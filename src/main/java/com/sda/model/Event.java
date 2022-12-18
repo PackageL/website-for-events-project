@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Entity
@@ -13,8 +14,11 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @NotBlank(message = "Title cannot be empty")
     private String title;
+    @NotBlank(message = "Date cannot be empty")
     private Date date;
+    @NotBlank(message = "Description cannot be empty")
     private String description;
 
     public Event() {
