@@ -1,9 +1,6 @@
 package com.sda.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
@@ -15,6 +12,7 @@ public class User {
     private int id;
 
     @NotBlank(message = "Username cannot be empty")
+    @Column(unique = true)
     private String username;
 
     @NotBlank(message = "Password cannot be empty")
@@ -22,6 +20,7 @@ public class User {
 
     @NotBlank(message = "Email cannot be empty")
     @Email(message = "Email format is invalid")
+    @Column(unique = true)
     private String email;
     private String roles;
 

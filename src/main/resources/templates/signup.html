@@ -1,52 +1,54 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-  <link rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <meta charset="UTF-8">
+    <title>Signup</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
 </head>
 <body>
 
 <div class="container my-5">
-  <h2 class="mb-5">Register</h2>
-  <div class="row">
-    <div class="col-md-6">
-      <form action="#" th:action="@{/register}" th:object="${username}" method="post">
+    <h2 class="mb-5">Register</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <form action="#" th:action="@{/register}" th:object="${user}" method="post">
 
-        <div class="row">
-          <div class="form-group col-md-6">
-            <label for="username" class="col-form-label">Username</label>
-            <input type="text" th:field="*{username}" class="form-control" id="username"
-                   placeholder="Username">
-            <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger"></span>
-          </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="username" class="col-form-label">Username</label>
+                        <input type="text" th:field="*{username}" class="form-control" id="username"
+                               placeholder="Username">
+                        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
+                              class="text-danger"></span>
+                    </div>
 
-          <div class="form-group col-md-6">
-            <label for="password" class="col-form-label">Password</label>
-            <input type="text" th:field="*{password}" class="form-control" id="password"
-                   placeholder="Password">
-            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></span>
-          </div>
+                    <div class="form-group col-md-6">
+                        <label for="password" class="col-form-label">Password</label>
+                        <input type="text" th:field="*{password}" class="form-control" id="password"
+                               placeholder="Password">
+                        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                              class="text-danger"></span>
+                    </div>
 
-          <div class="form-group col-md-6">
-            <label for="email" class="col-form-label">Email</label>
-            <input type="text" th:field="*{email}" class="form-control" id="email"
-                   placeholder="Email">
-            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
-          </div>
+                    <div class="form-group col-md-6">
+                        <label for="email" class="col-form-label">Email</label>
+                        <input type="text" th:field="*{email}" class="form-control" id="email"
+                               placeholder="Email">
+                        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
+                    </div>
 
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mt-5">
+                        <input type="submit" class="btn btn-primary" value="Register">
+                    </div>
+                </div>
+            </form>
         </div>
-
-        <div class="row">
-          <div class="col-md-6 mt-5">
-            <input type="submit" class="btn btn-primary" value="Register">
-          </div>
-        </div>
-      </form>
     </div>
-  </div>
 </div>
 
 
