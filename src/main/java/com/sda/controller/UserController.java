@@ -38,7 +38,9 @@ public class UserController {
     }
 
     @GetMapping("/signup")
-    public String signup() {
+    public String signup(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
         return "signup";
     }
 
@@ -49,7 +51,7 @@ public class UserController {
         }
 
         repository.save(user);
-        return "redirect:/";
+        return "redirect:/signup?success";
     }
 
 }
