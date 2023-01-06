@@ -3,6 +3,7 @@ package com.sda.controller;
 import com.sda.model.Event;
 import com.sda.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,7 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
+@Controller
 public class EventController {
 
     private EventRepository repository;
@@ -33,7 +34,7 @@ public class EventController {
     public String viewEvent(@PathVariable("id") int id, Model model) {
         Optional<Event> event = repository.findById(id);
         model.addAttribute("event", event);
-        return "viewEvent";
+        return "view-event";
     }
 
     @GetMapping("/events")
