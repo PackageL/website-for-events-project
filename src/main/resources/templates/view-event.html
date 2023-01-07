@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Signup</title>
+    <title>Title</title>
     <style>
         body {
             margin: 0;
@@ -103,12 +103,6 @@
             background-color: #67A9F0;
         }
 
-        .register-text {
-            font-family: 'Roboto', sans-serif;
-            font-size: 36px;
-            color: #333;
-            text-align: center;
-        }
     </style>
 </head>
 <body>
@@ -127,23 +121,12 @@
             <input type="text" name="search" placeholder="Search">
             <button type="submit">Find</button>
         </form>
+        <a th:href="@{/signup}" class="signup-button">Signup</a>
         <a th:href="@{/signin}" class="signin-button">Signin</a>
     </nav>
 </header>
-<main>
-    <form class="form-container" action="#" th:action="@{/submit}" th:object="${user}" method="post">
-        <h1 class="register-text">Register</h1>
-        <label for="username">Username</label>
-        <input type="text" th:field="*{username}" id="username" name="username" placeholder="Username">
-        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger"></span>
-        <label for="password">Password</label>
-        <input type="text" th:field="*{password}" id="password" name="password" placeholder="Password">
-        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></span>
-        <label for="email">Email</label>
-        <input type="text" th:field="*{email}" id="email" name="email" placeholder="Email">
-        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
-        <button type="submit">Register</button>
-    </form>
-</main>
+<h1 th:text="${event.title}"></h1>
+<p>Date: <span th:text="${event.date}"></span></p>
+<p>Description: <span th:text="${event.description}"></span></p>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Signup</title>
+    <title>Create-event</title>
     <style>
         body {
             margin: 0;
@@ -103,12 +103,6 @@
             background-color: #67A9F0;
         }
 
-        .register-text {
-            font-family: 'Roboto', sans-serif;
-            font-size: 36px;
-            color: #333;
-            text-align: center;
-        }
     </style>
 </head>
 <body>
@@ -127,22 +121,19 @@
             <input type="text" name="search" placeholder="Search">
             <button type="submit">Find</button>
         </form>
+        <a th:href="@{/signup}" class="signup-button">Signup</a>
         <a th:href="@{/signin}" class="signin-button">Signin</a>
     </nav>
 </header>
 <main>
-    <form class="form-container" action="#" th:action="@{/submit}" th:object="${user}" method="post">
-        <h1 class="register-text">Register</h1>
-        <label for="username">Username</label>
-        <input type="text" th:field="*{username}" id="username" name="username" placeholder="Username">
-        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger"></span>
-        <label for="password">Password</label>
-        <input type="text" th:field="*{password}" id="password" name="password" placeholder="Password">
-        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></span>
-        <label for="email">Email</label>
-        <input type="text" th:field="*{email}" id="email" name="email" placeholder="Email">
-        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
-        <button type="submit">Register</button>
+    <form class="form-container" action="/createAnEvent" method="post">
+        <label for="title">Title:</label>
+        <input type="text" id="title"  name="title" placeholder="Title"><br>
+        <label for="date">Date:</label>
+        <input type="date" id="date"  name="date" placeholder="Date"><br>
+        <label for="description">Description:</label>
+        <textarea type="description" id="description"  name="description" placeholder="Description"></textarea><br>
+        <button type="submit">Create</button>
     </form>
 </main>
 </body>

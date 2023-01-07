@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Signup</title>
+    <title>World of events</title>
     <style>
+
         body {
             margin: 0;
             height: 100vh;
@@ -18,13 +18,6 @@
             display: flex;
             align-items: center;
             height: 50px;
-        }
-
-        main {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
         }
 
         nav {
@@ -67,47 +60,14 @@
             height: calc(100vh - 50px);
         }
 
-        .form-container {
-            width: 400px;
-            background-color: #fff;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .form-container input[type="text"],
-        .form-container input[type="password"] {
-            width: 100%;
-            border: none;
-            background-color: #f1f1f1;
-            color: #333;
-            font-size: 16px;
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
-
-        .form-container button[type="submit"] {
-            width: 100%;
-            border: none;
-            background-color: #0667CE;
-            color: #fff;
-            font-size: 16px;
-            padding: 10px;
-            margin-top: 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .form-container button[type="submit"]:hover {
-            background-color: #67A9F0;
-        }
-
-        .register-text {
+        .title {
             font-family: 'Roboto', sans-serif;
-            font-size: 36px;
+            font-size: 56px;
             color: #333;
             text-align: center;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            border: 10px solid rgba(33, 150, 243, 0.5);
+            padding: 20px;
         }
     </style>
 </head>
@@ -127,23 +87,12 @@
             <input type="text" name="search" placeholder="Search">
             <button type="submit">Find</button>
         </form>
+        <a th:href="@{/signup}" class="signup-button">Signup</a>
         <a th:href="@{/signin}" class="signin-button">Signin</a>
     </nav>
 </header>
 <main>
-    <form class="form-container" action="#" th:action="@{/submit}" th:object="${user}" method="post">
-        <h1 class="register-text">Register</h1>
-        <label for="username">Username</label>
-        <input type="text" th:field="*{username}" id="username" name="username" placeholder="Username">
-        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger"></span>
-        <label for="password">Password</label>
-        <input type="text" th:field="*{password}" id="password" name="password" placeholder="Password">
-        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></span>
-        <label for="email">Email</label>
-        <input type="text" th:field="*{email}" id="email" name="email" placeholder="Email">
-        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
-        <button type="submit">Register</button>
-    </form>
+    <h1 class="title">Website for Events</h1>
 </main>
 </body>
 </html>
