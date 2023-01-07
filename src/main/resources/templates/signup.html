@@ -131,7 +131,7 @@
     </nav>
 </header>
 <main>
-    <form class="form-container" action="#" th:action="@{/signup}" th:object="${user}" method="post">
+    <form class="form-container" action="#" th:action="@{/submit}" th:object="${user}" method="post">
         <h1 class="register-text">Register</h1>
         <label for="username">Username</label>
         <input type="text" th:field="*{username}" id="username" name="username" placeholder="Username">

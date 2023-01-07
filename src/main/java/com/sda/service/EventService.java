@@ -1,16 +1,28 @@
 package com.sda.service;
 
-import com.sda.repository.EventRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.sda.model.Event;
 
-@Service
-public class EventService {
+import java.util.List;
+import java.util.Optional;
 
-    private EventRepository repository;
+public interface EventService {
+    /**
+     * To create a new event
+     *
+     * @param event Event
+     */
+    void createEvent(Event event);
 
-    @Autowired
-    public EventService(EventRepository repository) {
-        this.repository = repository;
-    }
+    /**
+     * To get all events
+     * @return list of events
+     */
+    List<Event> getAllEvents();
+
+    /**
+     * Find user by id
+     * @param id user id
+     * @return user
+     */
+    Optional<Event> findEventById(Long id);
 }
