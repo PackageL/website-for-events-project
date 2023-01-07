@@ -14,12 +14,8 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/event")
 public class EventController {
-    private EventService eventService;
-
     @Autowired
-    public EventController(EventService eventService) {
-        this.eventService = eventService;
-    }
+    private EventService eventService;
 
     @PostMapping("/create")
     public String createEvent(@RequestParam("title") String title,

@@ -1,7 +1,7 @@
 package com.sda.controller;
 
 import com.sda.model.User;
-import com.sda.repository.UserService;
+import com.sda.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,12 +15,8 @@ import javax.validation.Valid;
 @Controller
 public class UserController {
 
-    private UserService repository;
-
     @Autowired
-    public UserController(UserService repository) {
-        this.repository = repository;
-    }
+    private UserService userService;
 
     @GetMapping("/")
     public String homePage() {
