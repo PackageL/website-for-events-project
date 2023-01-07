@@ -5,6 +5,7 @@ import com.sda.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -12,16 +13,29 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/event")
 public class EventController {
     @Autowired
     private EventService eventService;
 
-    @PostMapping("/create")
-    public String createEvent(@RequestParam("title") String title,
+
+    @GetMapping("/create-event")
+    public String createEvent(Model model){
+        Event event = new Event();
+        model.addAttribute("event", event);
+
+        return "create-event";
+    }
+
+    @PostMapping("/save")
+    public String saveEvent(@RequestParam("title") String title,
                               @RequestParam("date") LocalDate date,
-                              @RequestParam("description") String description) {
+                              @RequestParam("description") String description,
+    BindingResult result, Model model) {
         Event event = new Event(title, date, description);
+        if (result.hasErrors()) {
+            model.addAttribute("event", event);
+            return "create-event";
+        }
         eventService.createEvent(event);
         return "create-event";
     }
