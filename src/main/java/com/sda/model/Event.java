@@ -1,10 +1,13 @@
 package com.sda.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -17,15 +20,16 @@ public class Event {
 
     @NotBlank(message = "Title cannot be empty")
     private String title;
-    @NotBlank(message = "Date cannot be empty")
-    private String date;
+    @NotNull(message = "Date cannot be empty")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate date;
     @NotBlank(message = "Description cannot be empty")
     private String description;
 
     public Event() {
     }
 
-    public Event(String title, String date, String description) {
+    public Event(String title, LocalDate date, String description) {
         this.title = title;
         this.date = date;
         this.description = description;
@@ -39,11 +43,11 @@ public class Event {
         this.title = title;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

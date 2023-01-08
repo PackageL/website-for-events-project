@@ -132,7 +132,7 @@
         <input type="text" th:field="*{title}" id="title" name="title" placeholder="title">
         <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"></span>
         <label for="date">Date</label>
-        <input type="text" th:field="*{date}" id="date" name="date" placeholder="date">
+        <input type="date" th:field="*{date}" id="date" name="date" placeholder="date">
         <span th:if="${#fields.hasErrors('date')}" th:errors="*{date}" class="text-danger"></span>
         <label for="description">Description</label>
         <input type="text" th:field="*{description}" id="description" name="description" placeholder="description">
