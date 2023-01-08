@@ -15,4 +15,14 @@ public class UserServiceImpl implements com.sda.service.UserService {
     public void saveUser(User user) {
         userRepository.save(user);
     }
+
+    @Override
+    public User findUserByEmail(User user) {
+        return userRepository.findUserByEmail(user.getEmail());
+    }
+
+    @Override
+    public User findUserByUsername(User user) {
+        return userRepository.findUserByUsername(user.getUsername());
+    }
 }
