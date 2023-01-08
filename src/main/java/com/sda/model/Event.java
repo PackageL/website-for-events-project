@@ -18,14 +18,14 @@ public class Event {
     @NotBlank(message = "Title cannot be empty")
     private String title;
     @NotBlank(message = "Date cannot be empty")
-    private LocalDate date;
+    private String date;
     @NotBlank(message = "Description cannot be empty")
     private String description;
 
     public Event() {
     }
 
-    public Event(String title, LocalDate date, String description) {
+    public Event(String title, String date, String description) {
         this.title = title;
         this.date = date;
         this.description = description;
@@ -39,11 +39,11 @@ public class Event {
         this.title = title;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
