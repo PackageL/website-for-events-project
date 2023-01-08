@@ -61,6 +61,13 @@
             height: calc(100vh - 50px);
         }
 
+        .event-list-text {
+            font-family: 'Roboto', sans-serif;
+            font-size: 36px;
+            color: #333;
+            text-align: center;
+        }
+
     </style>
 </head>
 <body>
@@ -83,24 +90,38 @@
         <a th:href="@{/signin}" class="signin-button">Signin</a>
     </nav>
 </header>
-<table>
-    <tr>
-        <th>Title</th>
-        <th>Date</th>
-        <th>Description</th>
-        <th>Action</th>
-    </tr>
-    <tr th:each="event : ${events}">
-        <td th:text="${event.title}"></td>
-        <td th:text="${event.date}"></td>
-        <td th:text="${event.description}"></td>
-        <td>
-            <form method="get" action="/events/${event.id}">
-                <button type="submit">View</button>
-            </form>
-        </td>
-    </tr>
-</table>
-
+<h1 class="event-list-text" th:case="null">No events yet!</h1>
+<div th:switch="${events}" th:case="*">
+    <h1 class="event-list-text">List of events</h1>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="event : ${events}">
+            <td th:text="${event.title}"></td>
+            <td th:text="${event.date}"></td>
+            <td th:text="${event.description}"></td>
+            <td>
+                <form method="get" action="/events/${event.id}">
+                    <div th:if="${loggedIn}">
+                        <form method="post" action="/events/${event.id}/signup">
+                            <button type="submit">Sign Up</button>
+                        </form>
+                    </div>
+                    <div th:if="${signedUp}">
+                        <p>You are signed up for this event.</p>
+                        <form method="post" action="/events/${event.id}/resign">
+                            <button type="submit">Resign</button>
+                        </form>
+                    </div>
+                    <button type="submit">View</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>

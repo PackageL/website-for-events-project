@@ -1,0 +1,107 @@
+body {
+    margin: 0;
+    height: 100vh;
+    background-image: url('https://images.template.net/115858/free-sky-blue-abstract-background-m8ysc.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+header {
+    background-color: rgba(33, 150, 243, 0.5);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    font-family: 'Roboto', sans-serif;
+    padding: 0 20px;
+}
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+nav a,
+nav form {
+    color: #fff;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+nav a:hover,
+nav form:hover {
+    color: #eee;
+}
+
+nav input[type="text"] {
+    border: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 0 10px;
+}
+
+nav button[type="submit"] {
+    border: none;
+    background-color: rgba(33, 150, 243, 0.5);
+    color: #fff;
+    padding: 0 10px;
+}
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 50px);
+}
+
+.form-container {
+    width: 400px;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.form-container input[type="text"],
+.form-container input[type="password"] {
+    width: 100%;
+    border: none;
+    background-color: #f1f1f1;
+    color: #333;
+    font-size: 16px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.form-container button[type="submit"] {
+    width: 100%;
+    border: none;
+    background-color: #0667CE;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-container button[type="submit"]:hover {
+    background-color: #67A9F0;
+}
+
+.create-event-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 36px;
+    color: #333;
+    text-align: center;
+}

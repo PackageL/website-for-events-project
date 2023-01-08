@@ -131,12 +131,14 @@
     </nav>
 </header>
 <main>
-    <form class="form-container" action="#" method="post">
+    <form class="form-container" action="#" th:action="@{/signin}" th:object="${user}" method="post">
         <h1 class="signin-text">Sign In</h1>
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username" placeholder="Username">
+        <input type="text" th:field="*{username}" id="username" name="username" placeholder="Username">
+        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger"></span>
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" placeholder="Password">
+        <input type="password" th:field="*{password}" id="password" name="password" placeholder="Password">
+        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></span>
         <button type="submit">Login</button>
     </form>
 </main>
