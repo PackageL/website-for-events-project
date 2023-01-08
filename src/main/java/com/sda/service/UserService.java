@@ -6,4 +6,7 @@ public interface UserService {
 
     void saveUser(User user);
 
+    User findUserByEmail(User user);
+
+    User findUserByUsername(User user);
 }

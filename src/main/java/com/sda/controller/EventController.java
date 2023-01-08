@@ -17,9 +17,8 @@ public class EventController {
     @Autowired
     private EventService eventService;
 
-
     @GetMapping("/create-event")
-    public String createEvent(Model model){
+    public String createEvent(Model model) {
         Event event = new Event();
         model.addAttribute("event", event);
 
@@ -28,9 +27,9 @@ public class EventController {
 
     @PostMapping("/save")
     public String saveEvent(@RequestParam("title") String title,
-                              @RequestParam("date") LocalDate date,
-                              @RequestParam("description") String description,
-    BindingResult result, Model model) {
+                            @RequestParam("date") LocalDate date,
+                            @RequestParam("description") String description,
+                            BindingResult result, Model model) {
         Event event = new Event(title, date, description);
         if (result.hasErrors()) {
             model.addAttribute("event", event);
