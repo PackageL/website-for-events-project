@@ -37,6 +37,17 @@ public class UserController {
 
     @PostMapping("/submit")
     public String submit(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
+        User userFoundByEmail = userService.findUserByEmail(user);
+        User userFoundByName = userService.findUserByUsername(user);
+
+        if(userFoundByEmail != null) {
+            result.rejectValue("email", null, "Email already in user");
+        }
+
+        if(userFoundByName != null) {
+            result.rejectValue("username", null, "Username already in use");
+        }
+
         if (result.hasErrors()) {
             model.addAttribute("user", user);
             return "signup";
