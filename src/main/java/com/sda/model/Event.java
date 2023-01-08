@@ -1,10 +1,13 @@
 package com.sda.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -17,7 +20,8 @@ public class Event {
 
     @NotBlank(message = "Title cannot be empty")
     private String title;
-    @NotBlank(message = "Date cannot be empty")
+    @NotNull(message = "Date cannot be empty")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
     @NotBlank(message = "Description cannot be empty")
     private String description;
