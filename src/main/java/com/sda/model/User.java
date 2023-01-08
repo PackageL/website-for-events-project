@@ -18,7 +18,6 @@ public class User {
     private Long id;
 
     @NotBlank(message = "Username cannot be empty")
-
     private String username;
 
     @NotBlank(message = "Password cannot be empty")
@@ -28,8 +27,6 @@ public class User {
     @Email(message = "Email format is invalid")
     private String email;
 
-//    @ElementCollection(targetClass = Role.class)
-//    @Enumerated(EnumType.STRING)
-//    private List<Role> roles;
-    private String role;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Role> roles;
 }
