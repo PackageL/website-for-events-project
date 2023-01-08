@@ -53,4 +53,20 @@ public class EventController {
         model.addAttribute("events", events);
         return "event-list";
     }
+
+    //=============================================================================================================================
+    // To look into Luke or Anton. Two mapping to add a user to an event(signup for event) and for a user to resign from the event
+    //=============================================================================================================================
+
+//    @PostMapping("/events/{id}/signup")
+//    public String signup(@PathVariable("id") Long eventId) {
+//        eventService.addUserToEvent(eventId, user);
+//        return "redirect:/events";
+//    }
+//
+//    @PostMapping("/events/{id}/resign")
+//    public String resign(@PathVariable("id") Long eventId) {
+//        eventService.removeUserFromEvent(eventId, user);
+//        return "redirect:/events";
+//    }
 }

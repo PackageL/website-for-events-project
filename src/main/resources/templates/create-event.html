@@ -18,6 +18,8 @@
             display: flex;
             align-items: center;
             height: 50px;
+            font-family: 'Roboto', sans-serif;
+            padding: 0 20px;
         }
 
         main {
@@ -37,7 +39,7 @@
         nav a,
         nav form {
             color: #fff;
-            font-size: 14px;
+            font-size: 20px;
             text-decoration: none;
         }
 
@@ -103,6 +105,13 @@
             background-color: #67A9F0;
         }
 
+        .create-event-text {
+            font-family: 'Roboto', sans-serif;
+            font-size: 36px;
+            color: #333;
+            text-align: center;
+        }
+
     </style>
 </head>
 <body>
@@ -127,15 +136,15 @@
 </header>
 <main>
     <form class="form-container" action="#" th:action="@{/save}" th:object="${event}" method="post">
-        <h1 class="register-text">Create an Event</h1>
-        <label for="username">Title</label>
-        <input type="text" th:field="*{title}" id="username" name="username" placeholder="Username">
+        <h1 class="create-event-text">Create an Event</h1>
+        <label for="title">Title</label>
+        <input type="text" th:field="*{title}" id="title" name="title" placeholder="Enter the title">
         <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"></span>
         <label for="date">Date</label>
-        <input type="text" th:field="*{date}" id="date" name="date" placeholder="date">
+        <input type="date" th:field="*{date}" id="date" name="date" placeholder="Enter the date">
         <span th:if="${#fields.hasErrors('date')}" th:errors="*{date}" class="text-danger"></span>
         <label for="description">Description</label>
-        <input type="text" th:field="*{description}" id="description" name="description" placeholder="description">
+        <textarea rows="10" cols="50" min="20" max="255" th:field="*{description}" id="description" name="description" placeholder="Write a description"></textarea>
         <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></span>
         <button type="submit">Create</button>
     </form>

@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
@@ -27,6 +28,27 @@ public class UserController {
     public String signin() {
         return "signin";
     }
+
+    //=============================================================================================================================
+    // To look into Luke or Anton. Check if user exists when logging in
+    //=============================================================================================================================
+
+//    @PostMapping("/signin")
+//    public String signin(@RequestParam("username") String username,
+//                         @RequestParam("password") String password,
+//                         Model model) {
+//        // Check if the user exists and sign them in
+//        User user = userService.signin(username, password);
+//        if (user != null) {
+//            // Sign in the user
+//            session.setAttribute("user", user);
+//            return "redirect:/";
+//        } else {
+//            // Display an error message
+//            model.addAttribute("error", "Invalid username or password.");
+//            return "signin";
+//        }
+//    }
 
     @GetMapping("/signup")
     public String signup(Model model) {

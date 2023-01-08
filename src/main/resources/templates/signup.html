@@ -134,13 +134,13 @@
     <form class="form-container" action="#" th:action="@{/submit}" th:object="${user}" method="post">
         <h1 class="register-text">Register</h1>
         <label for="username">Username</label>
-        <input type="text" th:field="*{username}" id="username" name="username" placeholder="Username">
+        <input type="text" th:field="*{username}" id="username" name="username" placeholder="Enter your username">
         <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger"></span>
         <label for="password">Password</label>
-        <input type="text" th:field="*{password}" id="password" name="password" placeholder="Password">
+        <input type="text" th:field="*{password}" id="password" name="password" placeholder="Create a password">
         <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></span>
         <label for="email">Email</label>
-        <input type="text" th:field="*{email}" id="email" name="email" placeholder="Email">
+        <input type="text" th:field="*{email}" id="email" name="email" placeholder="Enter your email">
         <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
         <button type="submit">Register</button>
     </form>
