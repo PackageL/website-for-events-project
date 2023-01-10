@@ -1,97 +1,42 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>World of events</title>
-    <style>
-
-        body {
-            margin: 0;
-            height: 100vh;
-            background-image: url('https://images.template.net/115858/free-sky-blue-abstract-background-m8ysc.jpeg');
-            background-size: cover;
-            background-position: center;
-        }
-
-        header {
-            background-color: rgba(33, 150, 243, 0.5);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            height: 50px;
-            padding: 0 20px;
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-        }
-
-        nav a,
-        nav form {
-            color: #fff;
-            font-size: 20px;
-            text-decoration: none;
-            font-family: 'Roboto', sans-serif;
-        }
-
-        nav a:hover,
-        nav form:hover {
-            color: #eee;
-        }
-
-        nav input[type="text"] {
-            border: none;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            padding: 0 10px;
-        }
-
-        nav button[type="submit"] {
-            border: none;
-            background-color: rgba(33, 150, 243, 0.5);
-            color: #fff;
-            padding: 0 10px;
-        }
-
-        main {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: calc(100vh - 50px);
-        }
-
-        .title {
-            font-family: 'Roboto', sans-serif;
-            font-size: 56px;
-            color: #333;
-            text-align: center;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-            border: 10px solid rgba(33, 150, 243, 0.5);
-            padding: 20px;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+          integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <script type="text/javascript" th:inline="javascript" th:src="@{static/js/home.js}"></script>
 </head>
 <body>
+
 <header>
-    <nav>
-        <a th:href="@{/}" class="home-button">Home</a>
-        <a th:href="@{/myEvents}" class="my-events-button">My Events</a>
-        <a th:href="@{/event-list}" class="event-list-button">Event List</a>
-        <a th:href="@{/create-event}" class="create-event-button">Create an Event</a>
-        <form action="#" method="get">
-            <ul>
-                <li th:each="result : ${results}">
-                    <a th:href="${result.url}" th:text="${result.title}"></a>
-                </li>
-            </ul>
-            <input type="text" name="search" placeholder="Search">
-            <button type="submit">Find</button>
-        </form>
-        <a th:href="@{/signup}" class="signup-button">Signup</a>
-        <a th:href="@{/signin}" class="signin-button">Signin</a>
-    </nav>
+    <div class="header-container">
+        <button class="header-button hamburger-button">
+            <i class="fas fa-bars"></i>
+        </button>
+        <button href="#" th:href="@{/}"  class="header-button">
+            <i class="fas fa-home"></i>
+        </button>
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Search for events...">
+            <button class="find-button">Find</button>
+        </div>
+        <div id="loggedIn"></div>
+        <button href="#" th:href="@{/signin.html}" class="header-button">Sign In</button>
+        <button href="#" th:href="@{/signup.html}" class="header-button">Sign Up</button>
+    </div>
+    <div class="menu-container">
+        <nav class="menu">
+            <a href="#" th:href="@{/user-events.html}"  class="menu-item">My Events</a>
+            <a href="#" th:href="@{/event-list.html}"  class="menu-item">Event List</a>
+            <a href="#" th:href="@{/create-event.html}"  class="menu-item">Create an Event</a>
+        </nav>
+    </div>
 </header>
 <main>
     <h1 class="title">Website for Events</h1>
