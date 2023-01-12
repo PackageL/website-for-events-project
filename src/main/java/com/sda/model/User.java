@@ -29,4 +29,7 @@ public class User {
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Role> roles;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Event> events;
 }

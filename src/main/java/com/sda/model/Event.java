@@ -2,14 +2,13 @@ package com.sda.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Event {
@@ -20,19 +19,25 @@ public class Event {
 
     @NotBlank(message = "Title cannot be empty")
     private String title;
+
     @NotNull(message = "Date cannot be empty")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
+
     @NotBlank(message = "Description cannot be empty")
     private String description;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<User> participants = new ArrayList<>();
 
     public Event() {
     }
 
-    public Event(String title, LocalDate date, String description) {
+    public Event(String title, LocalDate date, String description, List<User> participants) {
         this.title = title;
         this.date = date;
         this.description = description;
+        this.participants = participants;
     }
 
     public String getTitle() {
@@ -57,6 +62,14 @@ public class Event {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<User> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipant(User participants) {
+        this.participants.add(participants);
     }
 
     @Override

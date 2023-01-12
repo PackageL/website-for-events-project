@@ -1,6 +1,7 @@
 package com.sda.service;
 
 import com.sda.model.Event;
+import com.sda.model.User;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,4 +26,8 @@ public interface EventService {
      * @return user
      */
     Optional<Event> findEventById(Long id);
+
+    void addUserToEvent(Long eventId, User user);
+
+    void removeUserFromEvent(Long eventId, User user);
 }
