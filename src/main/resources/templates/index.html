@@ -14,9 +14,9 @@
 
 <header>
     <div class="header-container">
-        <a class="header-button hamburger-button">
+        <button class="hamburger-button header-button">
             <i class="fas fa-bars"></i>
-        </a>
+        </button>
         <a href="#" th:href="@{/}"  class="header-button">
             <i class="fas fa-home"></i>
         </a>
@@ -31,8 +31,8 @@
     <div class="menu-container">
         <nav class="menu">
             <a href="#" th:href="@{/user-events}"  class="menu-item">My Events</a>
-            <a href="#" th:href="@{/event-list}"  class="menu-item">Event List</a>
-            <a href="#" th:href="@{/create-event.html}"  class="menu-item">Create an Event</a>
+            <a href="#" th:href="@{/events}"  class="menu-item">Event List</a>
+            <a href="#" th:href="@{/create-event}"  class="menu-item">Create an Event</a>
         </nav>
     </div>
 </header>

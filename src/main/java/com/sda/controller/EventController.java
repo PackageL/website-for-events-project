@@ -21,7 +21,6 @@ public class EventController {
     public String createEvent(Model model) {
         Event event = new Event();
         model.addAttribute("event", event);
-
         return "create-event";
     }
 
