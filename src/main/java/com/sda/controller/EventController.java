@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("/event")
 public class EventController {
     @Autowired
     private EventService eventService;

@@ -9,6 +9,19 @@ body {
     background-position: center;
 }
 
+.title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 56px;
+    color: #333;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    border: 10px solid rgba(33, 150, 243, 0.5);
+    padding: 20px;
+}
+
+.title-div{
+    margin-top: 50%;
+}
 /* header */
 header {
     position: fixed;
@@ -104,16 +117,6 @@ header {
 
 .header-hidden {
     top: -50px;
-}
-
-.title {
-    font-family: 'Roboto', sans-serif;
-    font-size: 56px;
-    color: #333;
-    text-align: center;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    border: 10px solid rgba(33, 150, 243, 0.5);
-    padding: 20px;
 }
 
 #loggedIn {
