@@ -17,14 +17,14 @@ public class EventController {
     @Autowired
     private EventService eventService;
 
-    @GetMapping("/create-event")
+    @GetMapping("/create")
     public String createEvent(Model model) {
         Event event = new Event();
         model.addAttribute("event", event);
         return "create-event";
     }
 
-    @PostMapping("/save")
+    @PostMapping
     public String saveEvent(@Valid @ModelAttribute("event") Event event,
                             BindingResult result, Model model) {
 
@@ -37,13 +37,13 @@ public class EventController {
     }
 
     @GetMapping("/{id}")
-    public String viewEvent(@PathVariable("id") Long id, Model model) {
+    public String viewEvent(@PathVariable Long id, Model model) {
         Optional<Event> event = eventService.findEventById(id);
         model.addAttribute("event", event);
         return "view-event";
     }
 
-    @GetMapping("/events")
+    @GetMapping
     public String listEvents(Model model) {
         List<Event> events = eventService.getAllEvents();
         model.addAttribute("events", events);
