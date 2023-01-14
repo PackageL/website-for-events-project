@@ -91,6 +91,7 @@ header {
     color: white;
     text-align: right;
 }
+
 .form-container {
     width: 400px;
     background-color: #fff;
@@ -99,7 +100,17 @@ header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+.form-container-create-event {
+    width: 600px;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+textarea,
 .form-container input[type="text"],
+.form-container input[type="date"],
 .form-container input[type="password"] {
     width: 100%;
     border: none;
@@ -132,5 +143,17 @@ main {
     align-items: center;
     justify-content: center;
     height: calc(100vh - 50px);
+}
+
+.event-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 36px;
+    color: #333;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
