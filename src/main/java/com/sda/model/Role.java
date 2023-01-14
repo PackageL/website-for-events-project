@@ -1,6 +1,6 @@
 package com.sda.model;
 
-import jdk.jfr.BooleanFlag;
+//import jdk.jfr.BooleanFlag;
 import lombok.Data;
 
 import javax.persistence.Entity;

@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("/event")
 public class EventController {
     @Autowired
     private EventService eventService;
@@ -20,7 +21,6 @@ public class EventController {
     public String createEvent(Model model) {
         Event event = new Event();
         model.addAttribute("event", event);
-
         return "create-event";
     }
 
