@@ -24,6 +24,11 @@ public class UserController {
         return "index";
     }
 
+    @GetMapping("/shit")
+    public String shitPage() {
+        return "shit";
+    }
+
     @GetMapping("/signin")
     public String signin(Model model) {
         model.addAttribute("signin", new User());

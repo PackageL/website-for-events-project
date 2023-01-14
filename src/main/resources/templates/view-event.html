@@ -1,134 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            background-image: url('https://images.template.net/115858/free-sky-blue-abstract-background-m8ysc.jpeg');
-            background-size: cover;
-            background-position: center;
-        }
-
-        header {
-            background-color: rgba(33, 150, 243, 0.5);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            height: 50px;
-            padding: 0 20px;
-        }
-
-        main {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-        }
-
-        nav a,
-        nav form {
-            color: #fff;
-            font-size: 20px;
-            text-decoration: none;
-            font-family: 'Roboto', sans-serif;
-        }
-
-        nav a:hover,
-        nav form:hover {
-            color: #eee;
-        }
-
-        nav input[type="text"] {
-            border: none;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            padding: 0 10px;
-        }
-
-        nav button[type="submit"] {
-            border: none;
-            background-color: rgba(33, 150, 243, 0.5);
-            color: #fff;
-            padding: 0 10px;
-        }
-
-        main {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: calc(100vh - 50px);
-        }
-
-        .form-container {
-            width: 400px;
-            background-color: #fff;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .form-container input[type="text"],
-        .form-container input[type="password"] {
-            width: 100%;
-            border: none;
-            background-color: #f1f1f1;
-            color: #333;
-            font-size: 16px;
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
-
-        .form-container button[type="submit"] {
-            width: 100%;
-            border: none;
-            background-color: #0667CE;
-            color: #fff;
-            font-size: 16px;
-            padding: 10px;
-            margin-top: 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .form-container button[type="submit"]:hover {
-            background-color: #67A9F0;
-        }
-
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+          integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <link rel="shortcut icon" href="#"/>
 </head>
 <body>
 <header>
-    <nav>
-        <a th:href="@{/}" class="home-button">Home</a>
-        <a th:href="@{/myEvents}" class="my-events-button">My Events</a>
-        <a th:href="@{/eventList}" class="event-list-button">Event List</a>
-        <a th:href="@{/createAnEvent}" class="create-event-button">Create an Event</a>
-        <form action="#" method="get">
-            <ul>
-                <li th:each="result : ${results}">
-                    <a th:href="${result.url}" th:text="${result.title}"></a>
-                </li>
-            </ul>
-            <input type="text" name="search" placeholder="Search">
-            <button type="submit">Find</button>
-        </form>
-        <a th:href="@{/signup}" class="signup-button">Signup</a>
-        <a th:href="@{/signin}" class="signin-button">Signin</a>
-    </nav>
+    <div class="header-container">
+        <a th:href="@{/}" class="header-button">
+            <i class="fas fa-home"></i>
+        </a>
+        <a th:href="@{/user-events}" class="header-button">My Events</a>
+        <a th:href="@{/events}" class="header-button">Event List</a>
+        <a th:href="@{/create-event}" class="header-button">Create an Event</a>
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Search for events...">
+            <button class="find-button">Find</button>
+        </div>
+        <div id="loggedIn"></div>
+        <a th:href="@{/signin}" class="header-button">Sign In</a>
+        <a th:href="@{/signup}" class="header-button">Sign Up</a>
+    </div>
 </header>
 <h1 th:text="${event.title}"></h1>
 <p>Date: <span th:text="${event.date}"></span></p>
 <p>Description: <span th:text="${event.description}"></span></p>
 </body>
+<script type="text/javascript" th:inline="javascript" th:src="@{/js/home.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+        integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+        crossorigin="anonymous"></script>
 </html>
