@@ -24,7 +24,7 @@ public class EventController {
         return "create-event";
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public String saveEvent(@Valid @ModelAttribute("event") Event event,
                             BindingResult result, Model model) {
 
