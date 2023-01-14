@@ -7,6 +7,7 @@ import lombok.ToString;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.Set;
 
@@ -18,9 +19,11 @@ public class User {
     private Long id;
 
     @NotBlank(message = "Username cannot be empty")
+    @Size(min = 5, max = 50, message = "Username must be between 5 and 50 characters")
     private String username;
 
     @NotBlank(message = "Password cannot be empty")
+    @Size(min = 8, max = 30, message = "Password must be between 8 and 30 characters")
     private String password;
 
     @NotBlank(message = "Email cannot be empty")
@@ -29,4 +32,5 @@ public class User {
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Role> roles;
+
 }
