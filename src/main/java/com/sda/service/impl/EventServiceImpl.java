@@ -36,7 +36,7 @@ public class EventServiceImpl implements EventService {
     public void addUserToEvent(Long eventId, User user) {
         Event event = eventRepository.findById(eventId).orElseThrow(() ->
                 new EntityNotFoundException("event with id: " + eventId + " was not found"));
-        event.setParticipant(user);
+        event.addParticipant(user);
         eventRepository.save(event);
     }
 

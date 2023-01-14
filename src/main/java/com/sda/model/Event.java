@@ -1,5 +1,6 @@
 package com.sda.model;
 
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -7,10 +8,10 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
+@Data
 public class Event {
 
     @Id
@@ -27,57 +28,13 @@ public class Event {
     @NotBlank(message = "Description cannot be empty")
     private String description;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<User> participants = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<User> participants;
 
-    public Event() {
-    }
+    @OneToOne(cascade = CascadeType.ALL)
+    private User organizer;
 
-    public Event(String title, LocalDate date, String description, List<User> participants) {
-        this.title = title;
-        this.date = date;
-        this.description = description;
-        this.participants = participants;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public List<User> getParticipants() {
-        return participants;
-    }
-
-    public void setParticipant(User participants) {
+    public void addParticipant(User participants) {
         this.participants.add(participants);
-    }
-
-    @Override
-    public String toString() {
-        return "Event{" +
-                "title='" + title + '\'' +
-                ", date=" + date +
-                ", description='" + description + '\'' +
-                '}';
     }
 }
