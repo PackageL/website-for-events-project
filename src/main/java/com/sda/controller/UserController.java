@@ -25,7 +25,8 @@ public class UserController {
     }
 
     @GetMapping("/signin")
-    public String signin() {
+    public String signin(Model model) {
+        model.addAttribute("signin", new User());
         return "signin";
     }
 
