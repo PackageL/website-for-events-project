@@ -7,7 +7,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -33,8 +32,4 @@ public class Event {
 
     @OneToOne(cascade = CascadeType.ALL)
     private User organizer;
-
-    public void addParticipant(User participants) {
-        this.participants.add(participants);
-    }
 }
