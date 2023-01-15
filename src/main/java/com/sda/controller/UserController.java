@@ -76,7 +76,7 @@ public class UserController {
     }
 
     @PostMapping("/submit")
-    public String submit(@Valid @ModelAttribute("user") User user, BindingResult result, Role role, Model model) throws Exception {
+    public String submit(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) throws Exception {
         User userFoundByName = userService.findUserByUsername(user.getUsername());
 
         if (userFoundByName != null) {
@@ -88,7 +88,6 @@ public class UserController {
             return "signup";
         }
 
-        role.setName("ROLE_ADMIN");
         userService.saveUser(user);
 
         return "redirect:/";
