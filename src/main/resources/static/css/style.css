@@ -6,6 +6,10 @@ body {
     background-image: url('https://images.template.net/115858/free-sky-blue-abstract-background-m8ysc.jpeg');
     background-size: cover;
     background-position: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .title {
@@ -156,4 +160,71 @@ main {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+/* Event container */
+.event-container {
+    width: 40%;
+    margin: 10px 5%;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Title styling */
+h2 {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+/* Date styling */
+p.date {
+    font-size: 0.8em;
+}
+
+/* Description styling */
+p.description {
+    font-size: 0.9em;
+    margin-bottom: 20px;
+}
+
+/* View and Sign up button */
+.event-container button {
+    border: none;
+    background-color: #2980b9;
+    color: #fff;
+    font-size: 0.9em;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.event-container button:hover {
+    background-color: #2c3e50;
+}
+
+/* Space between buttons */
+.event-container button + button {
+    margin-left: 10px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+th {
+    background-color: #f1f1f1;
+}
+
+.text-danger {
+    margin-top:10px;
+}
+
 

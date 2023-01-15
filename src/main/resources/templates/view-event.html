@@ -29,9 +29,11 @@
         <a th:href="@{/signup}" class="header-button">Sign Up</a>
     </div>
 </header>
+<div class="form-container">
 <h1 th:text="${event.title}"></h1>
-<p>Date: <span th:text="${event.date}"></span></p>
-<p>Description: <span th:text="${event.description}"></span></p>
+<p><span th:text="${event.startDate} - ${event.endDate}"></span></p>
+<p><span th:text="${event.description}"></span></p>
+</div>
 </body>
 <script type="text/javascript" th:inline="javascript" th:src="@{/js/script.js}"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
