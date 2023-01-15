@@ -1,17 +1,15 @@
 package com.sda.service;
 
-import com.sda.model.MyUserDetails;
 import com.sda.model.User;
+
 import java.util.List;
 
 
 public interface UserService {
 
-    void saveUser(MyUserDetails myUserDetails);
+    void saveUser(User user) throws Exception;
 
-    User findUserByEmail(MyUserDetails user);
+    User findUserByUsername(String username);
 
-    User findUserByUsername(MyUserDetails user);
-
-    List<MyUserDetails> findAllUsers();
+    List<User> findAllUsers();
 }

@@ -1,69 +1,43 @@
 package com.sda.service.impl;
 
-import com.sda.model.MyUserDetails;
 import com.sda.model.Role;
 import com.sda.model.User;
-import com.sda.repository.RoleRepository;
 import com.sda.repository.UserRepository;
+import com.sda.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static com.sda.utils.Constants.Security.SECURITY_DEFAULT_ROLE;
 
 @Service
 public class UserServiceImpl implements com.sda.service.UserService {
 
     @Autowired
     private UserRepository userRepository;
-    private RoleRepository roleRepository;
 
-    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
+    @Autowired
+    private RoleService roleService;
 
     @Override
-    public void saveUser(MyUserDetails myUserDetails) {
-        User user = new User();
-        user.setUsername(myUserDetails.getUsername());
-        user.setEmail(myUserDetails.getEmail());
-        user.setPassword(passwordEncoder.encode(myUserDetails.getPassword()));
+    public void saveUser(User user) throws Exception {
+        user.setRole(roleService.findRoleByName(SECURITY_DEFAULT_ROLE));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
-    private Role checkRoleExist() {
-        Role role = new Role();
-        role.setName("ROLE_ADMIN");
-        return roleRepository.save(role);
+    @Override
+    public User findUserByUsername(String username) {
+        return userRepository.findUserByUsername(username);
     }
 
     @Override
-    public User findUserByEmail(MyUserDetails user) {
-        return userRepository.findUserByEmail(user.getEmail());
+    public List<User> findAllUsers() {
+        return userRepository.findAll();
     }
-
-    @Override
-    public User findUserByUsername(MyUserDetails user) {
-        return userRepository.findUserByUsername(user.getUsername());
-    }
-    @Override
-    public List<MyUserDetails> findAllUsers() {
-        List<User> users = userRepository.findAll();
-        return users.stream().map(this::convertEntityToDto)
-                .collect(Collectors.toList());
-    }
-    private MyUserDetails convertEntityToDto(User user){
-        MyUserDetails userDto = new MyUserDetails();
-        userDto.setUsername(user.getUsername());
-        userDto.setEmail(user.getEmail());
-        userDto.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userDto;
-    }
-
-
-
 }
