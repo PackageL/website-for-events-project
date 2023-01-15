@@ -33,7 +33,7 @@ public class DataInit {
         createRole(roleUser);
 
         Role roleCreator = new Role();
-        roleUser.setName(SECURITY_ROLE_CREATOR);
+        roleCreator.setName(SECURITY_ROLE_CREATOR);
         createRole(roleCreator);
 
 
