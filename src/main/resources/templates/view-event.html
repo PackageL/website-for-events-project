@@ -31,7 +31,7 @@
 </header>
 <div class="form-container">
 <h1 th:text="${event.title}"></h1>
-<p><span th:text="${event.startDate} - ${event.endDate}"></span></p>
+<p><span th:text="${event.startDate} + ' - ' + ${event.endDate}"></span></p>
 <p><span th:text="${event.description}"></span></p>
 </div>
 </body>
