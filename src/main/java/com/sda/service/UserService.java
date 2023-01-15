@@ -1,14 +1,17 @@
 package com.sda.service;
 
+import com.sda.model.MyUserDetails;
 import com.sda.model.User;
-
 import java.util.List;
+
 
 public interface UserService {
 
-    void saveUser(User user);
+    void saveUser(MyUserDetails myUserDetails);
 
-    User findUserByEmail(User user);
+    User findUserByEmail(MyUserDetails user);
 
-    User findUserByUsername(User user);
+    User findUserByUsername(MyUserDetails user);
+
+    List<MyUserDetails> findAllUsers();
 }

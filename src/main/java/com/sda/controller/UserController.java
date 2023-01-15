@@ -1,23 +1,28 @@
 package com.sda.controller;
 
+import com.sda.model.MyUserDetails;
 import com.sda.model.User;
 import com.sda.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 import javax.validation.Valid;
 
 @Controller
 public class UserController {
 
-    @Autowired
+
     private UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/")
     public String homePage() {
@@ -30,8 +35,9 @@ public class UserController {
     }
 
     @GetMapping("/signin")
-    public String signin(Model model) {
-        model.addAttribute("signin", new User());
+    public String signin(Model model, MyUserDetails user) {
+
+        model.addAttribute("user", user);
         return "signin";
     }
 
@@ -56,6 +62,8 @@ public class UserController {
 //        }
 //    }
 
+
+
     @GetMapping("/signup")
     public String signup(Model model) {
         User user = new User();
@@ -64,12 +72,12 @@ public class UserController {
     }
 
     @PostMapping("/submit")
-    public String submit(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
+    public String submit(@Valid @ModelAttribute("user") MyUserDetails user, BindingResult result, Model model) {
         User userFoundByEmail = userService.findUserByEmail(user);
         User userFoundByName = userService.findUserByUsername(user);
 
         if(userFoundByEmail != null) {
-            result.rejectValue("email", null, "Email already in user");
+            result.rejectValue("email", null, "Email already in use");
         }
 
         if(userFoundByName != null) {
