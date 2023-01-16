@@ -3,13 +3,13 @@ let findButton = document.querySelector('.find-button');
 let searchBar = document.querySelector('.search-bar');
 findButton.addEventListener('click', function (event) {
     let searchValue = searchBar.value;
-    window.location.href = "search-results.html?title=" + searchValue;
+    window.location.href = "view-event.html?title=" + searchValue;
 });
 searchBar.addEventListener("keyup", function (event) {
     if (event.keyCode === 13) {
         event.preventDefault();
         let searchValue = searchBar.value;
-        window.location.href = "search-results.html?title=" + searchValue;
+        window.location.href = "view-event.html?title=" + searchValue;
         searchBar.value = '';
     }
 });

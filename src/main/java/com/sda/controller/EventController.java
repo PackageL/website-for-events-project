@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,8 +21,7 @@ public class EventController {
 
     @GetMapping("/create")
     public String createEvent(Model model) {
-        Event event = new Event();
-        model.addAttribute("event", event);
+        model.addAttribute("event", new Event());
         return "create-event";
     }
 
@@ -34,7 +34,7 @@ public class EventController {
             return "create-event";
         }
         eventService.createEvent(event);
-        return "redirect:/";
+        return "redirect:/event";
     }
 
     @GetMapping("/{id}")
@@ -47,6 +47,7 @@ public class EventController {
     @GetMapping
     public String listEvents(Model model) {
         List<Event> events = eventService.getAllEvents();
+        events.sort(Comparator.comparing(Event::getStartDate));
         model.addAttribute("events", events);
         return "event-list";
     }

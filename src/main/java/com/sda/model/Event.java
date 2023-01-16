@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -21,17 +22,27 @@ public class Event {
     private String title;
     @NotNull(message = "Date cannot be empty")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate date;
+    @FutureOrPresent
+    private LocalDate startDate;
+    @NotNull(message = "Date cannot be empty")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @FutureOrPresent
+    private LocalDate endDate;
     @NotBlank(message = "Description cannot be empty")
     private String description;
 
     public Event() {
     }
 
-    public Event(String title, LocalDate date, String description) {
+    public Event(String title, LocalDate startDate, LocalDate endDate, String description) {
         this.title = title;
-        this.date = date;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.description = description;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getTitle() {
@@ -42,12 +53,20 @@ public class Event {
         this.title = title;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
     public String getDescription() {
@@ -61,8 +80,10 @@ public class Event {
     @Override
     public String toString() {
         return "Event{" +
-                "title='" + title + '\'' +
-                ", date=" + date +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
                 ", description='" + description + '\'' +
                 '}';
     }
