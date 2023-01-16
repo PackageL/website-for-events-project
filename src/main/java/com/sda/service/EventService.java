@@ -15,12 +15,14 @@ public interface EventService {
 
     /**
      * To get all events
+     *
      * @return list of events
      */
     List<Event> getAllEvents();
 
     /**
      * Find user by id
+     *
      * @param id user id
      * @return user
      */

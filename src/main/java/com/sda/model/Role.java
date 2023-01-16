@@ -1,6 +1,5 @@
 package com.sda.model;
 
-//import jdk.jfr.BooleanFlag;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -15,6 +14,7 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String name;
     private boolean isActive;
 }

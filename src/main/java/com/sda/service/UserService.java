@@ -4,11 +4,12 @@ import com.sda.model.User;
 
 import java.util.List;
 
+
 public interface UserService {
 
-    void saveUser(User user);
+    void saveUser(User user) throws Exception;
 
-    User findUserByEmail(User user);
+    User findUserByUsername(String username);
 
-    User findUserByUsername(User user);
+    List<User> findAllUsers();
 }
