@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -17,16 +17,22 @@
         <a class="header-button" th:href="@{/}">
             <i class="fas fa-home"></i>
         </a>
-        <a class="header-button" th:href="@{/user-events}">My Events</a>
-        <a class="header-button" th:href="@{/event}">Event List</a>
-        <a class="header-button" th:href="@{/event/create}">Create an Event</a>
+        <div sec:authorize="isAuthenticated()">
+            <a class="header-button" th:href="@{/user-events}">My Events</a>
+        </div>
+        <div>
+            <a class="header-button" th:href="@{/event}">Event List</a>
+        </div>
+        <div sec:authorize="isAuthenticated()">
+            <a class="header-button" th:href="@{/event/create}">Create an Event</a>
+        </div>
         <div class="search-container">
             <input class="search-bar" placeholder="Search for events..." type="text">
             <button class="find-button">Find</button>
         </div>
-        <div id="loggedIn"></div>
+<!--        <div id="loggedIn"></div>-->
         <a class="header-button" th:href="@{/signup}">Signup</a>
-        <a class="header-button" th:href="@{/signin}">Signin</a>
+        <a class="header-button" th:href="@{/login}">Signin</a>
     </div>
 </header>
 <div th:switch="${events.size()}">

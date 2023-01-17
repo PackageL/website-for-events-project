@@ -17,7 +17,6 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @NotBlank(message = "Title cannot be empty")
     private String title;
     @NotNull(message = "Date cannot be empty")
@@ -30,6 +29,7 @@ public class Event {
     private LocalDate endDate;
     @NotBlank(message = "Description cannot be empty")
     private String description;
+
 
     public Event() {
     }

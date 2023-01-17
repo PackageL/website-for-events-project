@@ -39,7 +39,6 @@ public class DataInit {
 
     }
 
-
     private void createRole(Role role){
         try{
             Role resultRole = roleService.findRoleByName(role.getName());
