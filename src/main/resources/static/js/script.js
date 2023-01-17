@@ -28,5 +28,12 @@ function checkLoginStatus() {
 // check login status on page load
 window.addEventListener('load', checkLoginStatus);
 
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip({
+        placement: 'top',
+        template: '<div class="tooltip" role="tooltip" style="background-color: #f1f1f1;"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'
+    });
+});
+
 
 

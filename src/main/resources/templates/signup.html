@@ -41,7 +41,7 @@
         <input id="username" name="username" placeholder="Enter your username" th:field="*{username}" type="text">
         <span class="text-danger" th:errors="*{username}" th:if="${#fields.hasErrors('username')}"></span>
         <label for="password">Password</label>
-        <input id="password" name="password" placeholder="Create a password" th:field="*{password}" type="password">
+        <input id="password" name="password" min="8" max="30" placeholder="Create a password" th:field="*{password}" type="password">
         <span class="text-danger" th:errors="*{password}" th:if="${#fields.hasErrors('password')}"></span>
         <button type="submit">Register</button>
     </form>
