@@ -4,6 +4,8 @@ import com.sda.model.Role;
 import com.sda.model.User;
 import com.sda.service.RoleService;
 import com.sda.service.UserService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,14 +39,15 @@ public class UserController {
 
     @GetMapping("/login")
     public String signin(Model model, User user) {
-
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        model.addAttribute("username", username);
         model.addAttribute("user", user);
         return "signin";
     }
 
     @PostMapping("/login")
     public String login(HttpSession session, @RequestParam("username") String username){
-
         session.setAttribute("username", username);
         return "signin";
     }
@@ -93,6 +96,6 @@ public class UserController {
 
         userService.saveUser(user);
 
-        return "redirect:/";
+        return "redirect:/login";
     }
 }

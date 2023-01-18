@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -30,9 +31,17 @@
             <input class="search-bar" placeholder="Search for events..." type="text">
             <button class="find-button">Find</button>
         </div>
-<!--        <div id="loggedIn"></div>-->
-        <a class="header-button" th:href="@{/signup}">Signup</a>
-        <a class="header-button" th:href="@{/login}">Signin</a>
+        <div sec:authorize="!isAuthenticated()">
+            <a class="header-button" th:href="@{/login}">Sign In</a>
+        </div>
+        <div sec:authorize="!isAuthenticated()">
+            <a class="header-button" th:href="@{/signup}">Sign Up</a>
+        </div>
+
+        <div sec:authorize="isAuthenticated()">
+            Logged in as: <span sec:authentication="name"></span>
+        </div>
+
     </div>
 </header>
 <div th:switch="${events.size()}">
@@ -52,12 +61,13 @@
                     <p class="event-description" th:text="${event.description}"></p>
                 </div>
                 <div class="event-box-footer">
-                    <a th:data="${event.id}" th:href="@{/event/{eventId}(eventId=${event.id})}"  class="btn btn-primary" type="submit">
+                    <a th:data="${event.id}" th:href="@{/event/{eventId}(eventId=${event.id})}" class="btn btn-primary"
+                       type="submit">
                         View
                     </a>
-                    <form th:if="${loggedIn}" method="post" action="/events/${event.id}/signup">
+                    <div sec:authorize="isAuthenticated()">
                         <button class="btn btn-success" type="submit">Sign Up</button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>

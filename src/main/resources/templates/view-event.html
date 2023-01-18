@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -17,16 +17,30 @@
         <a class="header-button" th:href="@{/}">
             <i class="fas fa-home"></i>
         </a>
-        <a class="header-button" th:href="@{/user-events}">My Events</a>
-        <a class="header-button" th:href="@{/event}">Event List</a>
-        <a class="header-button" th:href="@{/event/create}">Create an Event</a>
+        <div sec:authorize="isAuthenticated()">
+            <a class="header-button" th:href="@{/user-events}">My Events</a>
+        </div>
+        <div>
+            <a class="header-button" th:href="@{/event}">Event List</a>
+        </div>
+        <div sec:authorize="isAuthenticated()">
+            <a class="header-button" th:href="@{/event/create}">Create an Event</a>
+        </div>
         <div class="search-container">
             <input class="search-bar" placeholder="Search for events..." type="text">
             <button class="find-button">Find</button>
         </div>
-        <div id="loggedIn"></div>
-        <a class="header-button" th:href="@{/signin}">Sign In</a>
-        <a class="header-button" th:href="@{/signup}">Sign Up</a>
+        <div sec:authorize="!isAuthenticated()">
+            <a class="header-button" th:href="@{/login}">Sign In</a>
+        </div>
+        <div sec:authorize="!isAuthenticated()">
+            <a class="header-button" th:href="@{/signup}">Sign Up</a>
+        </div>
+
+        <div class="loggedIn" sec:authorize="isAuthenticated()">
+            Logged in as: <span sec:authentication="name"></span>
+        </div>
+
     </div>
 </header>
 <div class="event-details-container">
@@ -38,7 +52,7 @@
         <span th:text="${event.endDate}"></span>
     </p>
     <p class="event-description" th:text="${event.description}"></p>
-    <form method="post" action="/events/${event.id}/signup" th:if="!${signedUp}">
+    <form sec:authorize="isAuthenticated()" method="post" action="/events/${event.id}/signup" th:if="!${signedUp}">
         <button class="btn btn-success" type="submit">Sign Up</button>
     </form>
     <div th:if="${signedUp}">
@@ -52,7 +66,7 @@
     </div>
 
 </div>
-<div class="comments-container" th:if="${loggedIn}">
+<div class="comments-container" sec:authorize="isAuthenticated()">
     <h2 class="comments-title">Leave a comment</h2>
     <form method="post" action="/events/${event.id}/comments">
         <textarea name="comment" placeholder="Write your comment here"></textarea>

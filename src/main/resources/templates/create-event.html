@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -30,9 +30,16 @@
             <input class="search-bar" placeholder="Search for events..." type="text">
             <button class="find-button">Find</button>
         </div>
-        <div id="loggedIn"></div>
-        <a class="header-button" th:href="@{/login}">Sign In</a>
-        <a class="header-button" th:href="@{/signup}">Sign Up</a>
+        <div sec:authorize="!isAuthenticated()">
+            <a class="header-button" th:href="@{/login}">Sign In</a>
+        </div>
+        <div sec:authorize="!isAuthenticated()">
+            <a class="header-button" th:href="@{/signup}">Sign Up</a>
+        </div>
+
+        <div class="loggedIn" sec:authorize="isAuthenticated()">
+            Logged in as: <span sec:authentication="name"></span>
+        </div>
     </div>
 </header>
 <main>
