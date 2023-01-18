@@ -14,20 +14,6 @@ searchBar.addEventListener("keyup", function (event) {
     }
 });
 
-// check the login status
-function checkLoginStatus() {
-    let loggedInText = document.getElementById("loggedIn");
-    let email = '<?php echo $_SESSION["email"]; ?>';
-    if (email) {
-        loggedInText.innerHTML = "Logged in as: " + email;
-    } else {
-        loggedInText.innerHTML = "";
-    }
-}
-
-// check login status on page load
-window.addEventListener('load', checkLoginStatus);
-
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip({
         placement: 'top',

@@ -46,7 +46,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return engine;
     }
 
-
     @Override
     public void configure(HttpSecurity http) throws Exception {
         String role = "ROLE_";
