@@ -12,7 +12,7 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "event_id")
-    private Optional<Event> event;
+    private Event event;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -22,7 +22,7 @@ public class Comment {
 
     public Comment() {}
 
-    public Comment(Optional<Event> event, User user, String text) {
+    public Comment(Event event, User user, String text) {
         this.event = event;
         this.user = user;
         this.text = text;
