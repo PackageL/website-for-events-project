@@ -1,9 +1,11 @@
 package com.sda.service;
 
 import com.sda.model.Event;
+import com.sda.model.User;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public interface EventService {
     /**
@@ -30,4 +32,5 @@ public interface EventService {
 
     void signupForEvent(Long eventId, String username);
     void resignFromEvent(Long eventId, String username);
+    Set<User> getAttendeesByEventId(long eventId);
 }

@@ -36,11 +36,11 @@ public class Comment {
         this.id = id;
     }
 
-    public Optional<Event> getEvent() {
+    public Event getEvent() {
         return event;
     }
 
-    public void setEvent(Optional<Event> event) {
+    public void setEvent(Event event) {
         this.event = event;
     }
 

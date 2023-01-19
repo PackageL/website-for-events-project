@@ -19,6 +19,7 @@ import javax.validation.Valid;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/event")
@@ -53,9 +54,11 @@ public class EventController {
         Optional<Event> event = eventService.findEventById(id);
         User user = userService.findUserByUsername(authentication.getName());
         List<Comment> comments = commentService.getCommentsByEventId(id);
+        Set<User> attendees = eventService.getAttendeesByEventId(id);
         model.addAttribute("event", event);
         model.addAttribute("user", user);
         model.addAttribute("comments", comments);
+        model.addAttribute("attendees", attendees);
         return "view-event";
     }
 

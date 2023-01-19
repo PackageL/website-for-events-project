@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class EventServiceImpl implements EventService {
@@ -47,5 +48,13 @@ public class EventServiceImpl implements EventService {
         User user = userService.findUserByUsername(username);
         event.removeAttendee(user);
         eventRepository.save(event);
+    }
+
+    public Set<User> getAttendeesByEventId(long eventId) {
+        Event event = eventRepository.findById(eventId).orElse(null);
+        if (event != null) {
+            return event.getAttendees();
+        }
+        return null;
     }
 }

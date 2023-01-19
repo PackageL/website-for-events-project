@@ -64,7 +64,14 @@
 <!--            </form>-->
 <!--        </div>-->
 <!--    </div>-->
-
+    <div class="signed-up-users">
+        <h3>Signed up users:</h3>
+        <ul>
+            <li th:each="user : ${attendees}">
+                <span th:text="${user.username}"></span>
+            </li>
+        </ul>
+    </div>
 </div>
 <div class="comments-container" sec:authorize="isAuthenticated()">
     <h2 class="comments-title">Leave a comment</h2>

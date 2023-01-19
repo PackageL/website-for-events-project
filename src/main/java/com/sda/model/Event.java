@@ -37,6 +37,14 @@ public class Event {
     @JoinTable(name = "event_users", joinColumns = { @JoinColumn(name = "event_id") }, inverseJoinColumns = { @JoinColumn(name = "user_id") })
     private Set<User> attendees = new HashSet<>();
 
+    public Set<User> getAttendees() {
+        return attendees;
+    }
+
+    public void setAttendees(Set<User> attendees) {
+        this.attendees = attendees;
+    }
+
     public void addAttendee(User user) {
         attendees.add(user);
         user.getEvents().add(this);
