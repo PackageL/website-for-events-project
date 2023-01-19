@@ -76,12 +76,12 @@
 <div class="comments-container" sec:authorize="isAuthenticated()">
     <h2 class="comments-title">Leave a comment</h2>
     <form method="post" action="/events/${event.id}/comments">
-        <textarea name="comment" placeholder="Write your comment here"></textarea>
+        <textarea maxlength="500" name="comment" placeholder="Write your comment here"></textarea>
         <button class="btn btn-primary" type="submit">Comment</button>
     </form>
     <div class="comments-list">
         <div class="comment" th:each="comment : ${comments}">
-            <p class="comment-author" th:text="${comment.username}"></p>
+            <p class="comment-author" th:text="${comment.user.username}"></p>
             <div class="comment-text" th:text="${comment.text}"></div>
         </div>
     </div>
