@@ -27,4 +27,7 @@ public interface EventService {
      * @return user
      */
     Optional<Event> findEventById(Long id);
+
+    void signupForEvent(Long eventId, String username);
+    void resignFromEvent(Long eventId, String username);
 }

@@ -2,14 +2,13 @@ package com.sda.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Event {
@@ -17,6 +16,8 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(unique = true)
     @NotBlank(message = "Title cannot be empty")
     private String title;
     @NotNull(message = "Date cannot be empty")
@@ -29,7 +30,22 @@ public class Event {
     private LocalDate endDate;
     @NotBlank(message = "Description cannot be empty")
     private String description;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "event_users", joinColumns = { @JoinColumn(name = "event_id") }, inverseJoinColumns = { @JoinColumn(name = "user_id") })
+    private Set<User> attendees = new HashSet<>();
 
+    public void addAttendee(User user) {
+        attendees.add(user);
+        user.getEvents().add(this);
+    }
+
+    public void removeAttendee(User user) {
+        attendees.remove(user);
+        user.getEvents().remove(this);
+    }
 
     public Event() {
     }

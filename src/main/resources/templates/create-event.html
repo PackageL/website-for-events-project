@@ -44,7 +44,6 @@
 </header>
 <main>
     <form action="#" class="form-container" method="post" th:action="@{/event/create}" th:object="${event}">
-<!--        <input type="hidden" th:field="*{user}" th:value="${loggedInUser}"/>-->
         <h1 class="second-tile">Create an Event</h1>
         <label for="title">Title</label>
         <input type="text" th:field="*{title}" id="title" name="title" placeholder="Enter the title">

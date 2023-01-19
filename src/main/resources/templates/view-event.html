@@ -43,7 +43,7 @@
 
     </div>
 </header>
-<div class="event-details-container">
+<div  class="event-details-container">
     <h1 class="event-title" th:text="${event.isPresent() ? event.get().title : 'Event not found'}"></h1>
     <p class="event-date">
         <span>Start date:</span>
@@ -52,18 +52,18 @@
         <span th:text="${event.isPresent() ? event.get().endDate : 'End date not found'}"></span>
     </p>
     <p class="event-description" th:text="${event.isPresent() ? event.get().description : 'Description not found'}"></p>
-    <form sec:authorize="isAuthenticated()" method="post" action="/events/${event.id}/signup" th:if="!${signedUp}">
-        <button class="btn btn-success" type="submit">Sign Up</button>
-    </form>
-    <div th:if="${signedUp}">
-        <div class="attendees-container">
-        <span class="attendees-title" th:text="Participants" data-toggle="tooltip" title="Attendees list">
-            <ul class="attendees-list" style="display: none;">
-                <li th:each="attendee : ${attendees}" th:text="${attendee.name}"></li>
-            </ul>
-        </span>
-        </div>
-    </div>
+<!--    <div class="event-box-footer" sec:authentication="isAuthenticated()">-->
+<!--        <div th:if="${user.event.contains(event) == false}">-->
+<!--            <form th:if="${user != null}" method="post" action="/event/{{event.id}}/signup">-->
+<!--                <a class="btn btn-success" type="submit">Sign Up</a>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--        <div th:if="${user.event.contains(event) == true}">-->
+<!--            <form method="post" action="/event/{{event.id}}/resign">-->
+<!--                <a class="btn btn-danger" type="submit">Resign</a>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
 
 </div>
 <div class="comments-container" sec:authorize="isAuthenticated()">
