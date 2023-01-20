@@ -17,27 +17,27 @@
         <a class="header-button" th:href="@{/}">
             <i class="fas fa-home"></i>
         </a>
-        <div sec:authorize="isAuthenticated()">
+        <div sec:authorize="authenticated">
             <a class="header-button" th:href="@{/user-events}">My Events</a>
         </div>
         <div>
             <a class="header-button" th:href="@{/event}">Event List</a>
         </div>
-        <div sec:authorize="isAuthenticated()">
+        <div sec:authorize="authenticated">
             <a class="header-button" th:href="@{/event/create}">Create an Event</a>
         </div>
         <div class="search-container">
             <input class="search-bar" placeholder="Search for events..." type="text">
             <button class="find-button">Find</button>
         </div>
-        <div sec:authorize="!isAuthenticated()">
+        <div sec:authorize="!authenticated">
             <a class="header-button" th:href="@{/login}">Sign In</a>
         </div>
-        <div sec:authorize="!isAuthenticated()">
+        <div sec:authorize="!authenticated">
             <a class="header-button" th:href="@{/signup}">Sign Up</a>
         </div>
 
-        <div class="loggedIn" sec:authorize="isAuthenticated()">
+        <div class="loggedIn" sec:authorize="authenticated">
             Logged in as: <span sec:authentication="name"></span>
         </div>
 

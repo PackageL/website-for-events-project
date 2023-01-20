@@ -66,7 +66,7 @@ public class EventController {
     public String addComment(@PathVariable long id, @RequestParam String comment, Authentication authentication) {
         Optional<Event> event = eventService.findEventById(id);
         User user = (User) authentication.getPrincipal();
-        Comment newComment = new Comment(event, user, comment);
+        Comment newComment = new Comment(event.orElseGet(Event::new), user, comment);
         commentService.addComment(newComment);
         return "redirect:/{id}";
     }
@@ -79,7 +79,7 @@ public class EventController {
         return "event-list";
     }
 
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("authenticated")
     @PostMapping("/{id}/signup")
     public String signupForEvent(@PathVariable Long id, Authentication authentication) {
         Event event = eventService.findEventById(id).orElseThrow(() -> new IllegalArgumentException("Invalid event id"));
@@ -88,7 +88,7 @@ public class EventController {
         return "redirect:/{id}";
     }
 
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("authenticated")
     @PostMapping("/{id}/resign")
     public String resignFromEvent(@PathVariable Long id, Authentication authentication) {
         Event event = eventService.findEventById(id).orElseThrow(() -> new IllegalArgumentException("Invalid event id"));
