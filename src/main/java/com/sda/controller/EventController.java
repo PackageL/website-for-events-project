@@ -72,10 +72,12 @@ public class EventController {
     }
 
     @GetMapping
-    public String listEvents(Model model) {
+    public String listEvents(Model model, Authentication authentication) {
         List<Event> events = eventService.getAllEvents();
+        User user = userService.findUserByUsername(authentication.getName());
         events.sort(Comparator.comparing(Event::getStartDate));
         model.addAttribute("events", events);
+        model.addAttribute("user", user);
         return "event-list";
     }
 

@@ -65,17 +65,17 @@
                        type="submit">
                         View
                     </a>
-<!--                    <div sec:authorize="authenticated">-->
-<!--                        <div th:if="${user.event.contains(event) == false}">-->
-<!--                            <form th:if="${user != null}" method="post" action="/event/{{event.id}}/signup">-->
-<!--                                <a class="btn btn-success" type="submit">Sign Up</a>-->
-<!--                            </form>-->
-<!--                        </div>-->
-<!--                        <div th:if="${user.event.contains(event) == true}">-->
-<!--                            <form method="post" action="/event/{{event.id}}/resign">-->
-<!--                                <a class="btn btn-danger" type="submit">Resign</a>-->
-<!--                            </form>-->
-<!--                        </div>-->
+                    <div sec:authorize="authenticated">
+                        <div th:if="${user.events.contains(event) == false}">
+                            <form th:if="${user != null}" method="post" action="/event/{{event.id}}/signup">
+                                <a class="btn btn-success" type="submit">Sign Up</a>
+                            </form>
+                        </div>
+                        <div th:if="${user.events.contains(event) == true}">
+                            <form method="post" action="/event/{{event.id}}/resign">
+                                <a class="btn btn-danger" type="submit">Resign</a>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
