@@ -54,7 +54,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         String creator = SECURITY_ROLE_CREATOR.replace(role, "");
 
         http.authorizeRequests()
-                .antMatchers("/", "/signup", "/signin", "/index")
+                .antMatchers("/", "/signup", "/signin", "/index", "/switch-to-user", "/switch-to-creator")
                 .permitAll()
                 .antMatchers("/create-event")
                 .hasAnyRole(admin, creator, user)
@@ -67,7 +67,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .permitAll(false)
-                .logoutSuccessUrl("/logout")
+                .logoutSuccessUrl("/")
                 .and()
                 .csrf()
                 .disable();

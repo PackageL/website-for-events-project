@@ -35,7 +35,6 @@ public class RoleServiceImpl implements RoleService {
     public void updateRole(Role role) throws Exception {
         findRoleById(role.getId());
         roleRepository.saveAndFlush(role);
-
     }
     @Override
     public List<Role> findAllRoles() {
