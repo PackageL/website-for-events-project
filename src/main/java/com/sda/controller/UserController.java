@@ -1,9 +1,12 @@
 package com.sda.controller;
 
+import com.sda.model.Event;
 import com.sda.model.Role;
 import com.sda.model.User;
+import com.sda.service.EventService;
 import com.sda.service.RoleService;
 import com.sda.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -16,10 +19,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.Comparator;
+import java.util.List;
 
 @Controller
 public class UserController {
     private final UserService userService;
+
+    @Autowired
+    private EventService eventService;
 
     private RoleService roleService;
 
@@ -28,13 +36,11 @@ public class UserController {
     }
 
     @GetMapping("/")
-    public String homePage() {
+    public String homePage(Model model) {
+        List<Event> events = eventService.getAllEvents();
+        events.sort(Comparator.comparing(Event::getStartDate));
+        model.addAttribute("events", events);
         return "index";
-    }
-
-    @GetMapping("/shit")
-    public String shitPage() {
-        return "shit";
     }
 
     @GetMapping("/login")
@@ -51,28 +57,6 @@ public class UserController {
         session.setAttribute("username", username);
         return "signin";
     }
-
-    //=============================================================================================================================
-    // To look into Luke or Anton. Check if user exists when logging in
-    //=============================================================================================================================
-
-//    @PostMapping("/signin")
-//    public String signin(@RequestParam("username") String username,
-//                         @RequestParam("password") String password,
-//                         Model model) {
-//        // Check if the user exists and sign them in
-//        User user = userService.signin(username, password);
-//        if (user != null) {
-//            // Sign in the user
-//            session.setAttribute("user", user);
-//            return "redirect:/";
-//        } else {
-//            // Display an error message
-//            model.addAttribute("error", "Invalid username or password.");
-//            return "signin";
-//        }
-//    }
-
 
     @GetMapping("/signup")
     public String signup(Model model) {

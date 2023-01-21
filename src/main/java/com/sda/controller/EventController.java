@@ -72,16 +72,6 @@ public class EventController {
         return "redirect:/event/{id}";
     }
 
-    @GetMapping
-    public String listEvents(Model model, Authentication authentication) {
-        List<Event> events = eventService.getAllEvents();
-        User user = userService.findUserByUsername(authentication.getName());
-        events.sort(Comparator.comparing(Event::getStartDate));
-        model.addAttribute("events", events);
-        model.addAttribute("user", user);
-        return "event-list";
-    }
-
     @GetMapping("/{id}/signup")
     public String signupForEvent(@PathVariable Long id, Authentication authentication) {
         Event event = eventService.findEventById(id).orElseThrow(() -> new IllegalArgumentException("Invalid event id"));

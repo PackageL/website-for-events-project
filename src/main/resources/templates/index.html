@@ -17,9 +17,6 @@
         <a class="header-button" th:href="@{/}">
             <i class="fas fa-home"></i>
         </a>
-        <div>
-            <a class="header-button" th:href="@{/event}">Event List</a>
-        </div>
         <div sec:authorize="authenticated">
             <a class="header-button" th:href="@{/event/create}">Create an Event</a>
         </div>
@@ -42,6 +39,31 @@
 </header>
 <div class="title-div">
     <h1 class="title">Website for Events</h1>
+</div>
+<div th:switch="${events.size()}">
+        <div class="row">
+            <div th:each="event : ${events}" class="event-box col-6 col-md-6">
+                <div class="event-box-content">
+                    <h2 class="event-title">
+                        <a class="event-title" th:href="@{/event/{id}(id=${event.id})}" th:text="${event.title}"></a>
+                    </h2>
+                    <p class="event-date">
+                        <span>Start date:</span>
+                        <span th:text="${event.startDate}"></span>
+                        <span class="end-date">End date:</span>
+                        <span th:text="${event.endDate}"></span>
+                    </p>
+                    <p class="event-description" th:text="${event.description}"></p>
+                </div>
+                <div class="event-box-footer">
+                    <a th:data="${event.id}" th:href="@{/event/{eventId}(eventId=${event.id})}" class="btn btn-primary"
+                       type="submit">
+                        View
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
