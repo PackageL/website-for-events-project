@@ -163,51 +163,9 @@ main {
 }
 
 .text-danger {
-    margin-top:10px;
+    margin-top: 10px;
 }
 
-/*.event-list {*/
-/*    width: 100%;*/
-/*    padding: 40px;*/
-/*    border-radius: 10px;*/
-/*    flex-wrap: wrap;*/
-/*    align-items: center;*/
-/*    justify-content: center;*/
-/*    display: grid;*/
-/*    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));*/
-/*    max-height: 600px;*/
-/*}*/
-
-/*.event-box {*/
-/*    width: 250px;*/
-/*    background-color: #fff;*/
-/*    padding: 20px;*/
-/*    border-radius: 10px;*/
-/*    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);*/
-/*    margin: 10px 10px 50px 10px;*/
-/*}*/
-
-/*.event-title {*/
-/*    font-size: 20px;*/
-/*    font-weight: bold;*/
-/*    margin-bottom: 10px;*/
-/*}*/
-
-/*.event-date {*/
-/*    font-size: 18px;*/
-/*    margin-bottom: 10px;*/
-/*}*/
-
-/*.event-description {*/
-/*    font-size: 16px;*/
-/*    margin-bottom: 10px;*/
-/*}*/
-
-/*.event-box-footer {*/
-/*    display: flex;*/
-/*    justify-content: space-between;*/
-/*    align-items: center;*/
-/*}*/
 .event-list {
     display: flex;
     justify-content: center;
@@ -245,7 +203,7 @@ main {
     align-self: flex-start;
 }
 
-.end-date{
+.end-date {
     font-weight: bold;
     margin-left: 40%;
     align-self: flex-end;
@@ -287,7 +245,6 @@ main {
 
 .event-details-container {
     position: relative;
-    top: 15%;
     width: 60%;
     height: 35%;
     margin: 0 auto;
@@ -406,5 +363,22 @@ main {
 .event-details-comments-list li {
     margin-bottom: 10px;
     padding: 10px;
+}
+
+.comments-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.comment {
+    background-color: #f5f5f5;
+    padding: 10px;
+    margin-bottom: 10px;
 }
 

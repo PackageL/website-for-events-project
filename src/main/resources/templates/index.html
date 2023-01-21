@@ -26,10 +26,10 @@
         <div sec:authorize="authenticated">
             <a class="header-button" th:href="@{/event/create}">Create an Event</a>
         </div>
-        <div class="search-container">
+        <form class="search-container" th:action="@{/search}" method="get">
             <input class="search-bar" placeholder="Search for events..." type="text">
             <button class="find-button">Find</button>
-        </div>
+        </form>
         <div sec:authorize="!authenticated">
             <a class="header-button" th:href="@{/login}">Sign In</a>
         </div>

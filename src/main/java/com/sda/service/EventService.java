@@ -33,4 +33,6 @@ public interface EventService {
     void signupForEvent(Long eventId, String username);
     void resignFromEvent(Long eventId, String username);
     Set<User> getAttendeesByEventId(long eventId);
+
+//    List<Event> searchEvents(String title);
 }

@@ -98,21 +98,13 @@ public class EventController {
         eventService.resignFromEvent(event.getId(), user.getUsername());
         return "redirect:/{id}";
     }
+
+//    @GetMapping("/search")
+//    public String search(@ModelAttribute("searchForm") Event event, Model model) {
+//        List<Event> events = eventService.searchEvents(event.getTitle());
+//        model.addAttribute("events", events);
+//        return "view-event";
+//    }
 }
 
-    //=============================================================================================================================
-    // To look into Luke or Anton. Two mapping to add a user to an event(signup for event) and for a user to resign from the event
-    //=============================================================================================================================
-
-//    @PostMapping("/{id}/signup")
-//    public String signup(@PathVariable("id") Long eventId) {
-//        eventService.addUserToEvent(eventId, user);
-//        return "redirect:/events";
-//    }
-//
-//    @PostMapping("/{id}/resign")
-//    public String resign(@PathVariable("id") Long eventId) {
-//        eventService.removeUserFromEvent(eventId, user);
-//        return "redirect:/events";
-//    }
 
