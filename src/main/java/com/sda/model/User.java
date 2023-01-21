@@ -26,6 +26,4 @@ public class User {
     @OneToOne(cascade = CascadeType.MERGE)
     private Role role;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "attendees")
-    private Set<Event> events = new HashSet<>();
 }

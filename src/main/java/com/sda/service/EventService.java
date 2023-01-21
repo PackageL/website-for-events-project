@@ -30,9 +30,9 @@ public interface EventService {
      */
     Optional<Event> findEventById(Long id);
 
-    void signupForEvent(Long eventId, String username);
+    void signupForEvent(Long eventId, User user);
     void resignFromEvent(Long eventId, String username);
-    Set<User> getAttendeesByEventId(long eventId);
+    List<User> getAttendeesByEventId(long eventId);
 
 //    List<Event> searchEvents(String title);
 }

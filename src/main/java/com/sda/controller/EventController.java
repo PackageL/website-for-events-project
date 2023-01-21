@@ -54,11 +54,12 @@ public class EventController {
         Optional<Event> event = eventService.findEventById(id);
         User user = userService.findUserByUsername(authentication.getName());
         List<Comment> comments = commentService.getCommentsByEventId(id);
-        Set<User> attendees = eventService.getAttendeesByEventId(id);
+        List<User> attendees = eventService.getAttendeesByEventId(id);
         model.addAttribute("event", event);
         model.addAttribute("user", user);
         model.addAttribute("comments", comments);
         model.addAttribute("attendees", attendees);
+        model.addAttribute("isSignedUp", attendees.contains(user));
         return "view-event";
     }
 
@@ -86,7 +87,7 @@ public class EventController {
     public String signupForEvent(@PathVariable Long id, Authentication authentication) {
         Event event = eventService.findEventById(id).orElseThrow(() -> new IllegalArgumentException("Invalid event id"));
         User user = userService.findUserByUsername(authentication.getName());
-        eventService.signupForEvent(event.getId(), user.getUsername());
+        eventService.signupForEvent(event.getId(), user);
         return "redirect:/{id}";
     }
 

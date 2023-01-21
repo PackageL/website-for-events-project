@@ -53,13 +53,13 @@
     </p>
     <p class="event-description" th:text="${event.isPresent() ? event.get().description : 'Description not found'}"></p>
     <div class="event-box-footer" sec:authentication="authenticated">
-        <div th:if="${user.events.contains(event) == false}">
-            <form th:if="${user != null}" method="post" action="/event/{{event.id}}/signup">
+        <div th:if="${!isSignedUp}">
+            <form method="post" th:action="@{/event/${id}/signup}">
                 <a class="btn btn-success" type="submit">Sign Up</a>
             </form>
         </div>
-        <div th:if="${user.events.contains(event) == true}">
-            <form method="post" action="/event/{{event.id}}/resign">
+        <div th:if="${isSignedUp}">
+            <form method="post" th:action="@{/event/${id}/resign}">
                 <a class="btn btn-danger" type="submit">Resign</a>
             </form>
         </div>
@@ -75,7 +75,7 @@
 </div>
 <div class="comments-container" sec:authorize="authenticated">
     <h2 class="comments-title">Leave a comment</h2>
-    <form method="post" action="/events/${event.id}/comments">
+    <form method="post" th:action="@{/event/${id}/comments}">
         <textarea maxlength="500" name="comment" placeholder="Write your comment here"></textarea>
         <button class="btn btn-primary" type="submit">Comment</button>
     </form>

@@ -17,9 +17,6 @@
         <a class="header-button" th:href="@{/}">
             <i class="fas fa-home"></i>
         </a>
-        <div sec:authorize="authenticated">
-            <a class="header-button" th:href="@{/user-events}">My Events</a>
-        </div>
         <div>
             <a class="header-button" th:href="@{/event}">Event List</a>
         </div>

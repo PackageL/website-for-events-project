@@ -8,9 +8,7 @@ import com.sda.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class EventServiceImpl implements EventService {
@@ -36,9 +34,8 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public void signupForEvent(Long eventId, String username) {
+    public void signupForEvent(Long eventId, User user) {
         Event event = eventRepository.findEventById(eventId);
-        User user = userService.findUserByUsername(username);
         event.addAttendee(user);
         eventRepository.save(event);
     }
@@ -50,12 +47,14 @@ public class EventServiceImpl implements EventService {
         eventRepository.save(event);
     }
 
-    public Set<User> getAttendeesByEventId(long eventId) {
-        Event event = eventRepository.findById(eventId).orElse(null);
-        if (event != null) {
-            return event.getAttendees();
+    public List<User> getAttendeesByEventId(long eventId) {
+        Optional<Event> eventOptional = findEventById(eventId);
+
+        if(eventOptional.isPresent()) {
+            return eventOptional.get().getAttendees();
         }
-        return null;
+
+        return Collections.emptyList();
     }
 
 //    public List<Event> searchEvents(String title) {

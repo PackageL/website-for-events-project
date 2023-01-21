@@ -1,5 +1,6 @@
 package com.sda.model;
 
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -8,9 +9,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
+@Data
 public class Event {
 
     @Id
@@ -30,29 +33,18 @@ public class Event {
     private LocalDate endDate;
     @NotBlank(message = "Description cannot be empty")
     private String description;
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
-    @JoinTable(name = "event_users", joinColumns = { @JoinColumn(name = "event_id") }, inverseJoinColumns = { @JoinColumn(name = "user_id") })
-    private Set<User> attendees = new HashSet<>();
+    @OneToMany( cascade =CascadeType.ALL)
+    private List<User> attendees;
 
-    public Set<User> getAttendees() {
-        return attendees;
-    }
-
-    public void setAttendees(Set<User> attendees) {
-        this.attendees = attendees;
-    }
 
     public void addAttendee(User user) {
         attendees.add(user);
-        user.getEvents().add(this);
+
     }
 
     public void removeAttendee(User user) {
         attendees.remove(user);
-        user.getEvents().remove(this);
+
     }
 
     public Event() {

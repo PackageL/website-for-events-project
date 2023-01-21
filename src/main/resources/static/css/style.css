@@ -51,6 +51,7 @@ header {
     align-items: center;
     height: 100%;
 }
+/*a:link, a:visited, a:hover, a:active { text-decoration: none; }*/
 
 .header-button {
     display: flex;
@@ -190,6 +191,16 @@ main {
     margin-bottom: 20px;
 }
 
+.event-title:visited, .event-title:link{
+    color: #2980b9;
+    text-decoration: none;
+}
+
+.event-title:hover {
+    color: #1b567c;
+    text-decoration: none;
+}
+
 .event-date {
     font-size: 16px;
     display: flex;
@@ -259,6 +270,7 @@ main {
     font-weight: bold;
     font-size: 2em;
     margin-top: 20px;
+    color: #2980b9;
 }
 
 .event-details-date {
