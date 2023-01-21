@@ -55,7 +55,7 @@ public class EventController {
         User user = userService.findUserByUsername(authentication.getName());
         List<Comment> comments = commentService.getCommentsByEventId(id);
         List<User> attendees = eventService.getAttendeesByEventId(id);
-        model.addAttribute("event", event);
+        model.addAttribute("event", event.get());
         model.addAttribute("user", user);
         model.addAttribute("comments", comments);
         model.addAttribute("attendees", attendees);
@@ -66,10 +66,10 @@ public class EventController {
     @PostMapping("/{id}/comments")
     public String addComment(@PathVariable Long id, @RequestParam String comment, Authentication authentication) {
         Optional<Event> event = eventService.findEventById(id);
-        User user = (User) authentication.getPrincipal();
+        User user = userService.findUserByUsername(authentication.getName());
         Comment newComment = new Comment(event.orElseGet(Event::new), user, comment);
         commentService.addComment(newComment);
-        return "redirect:/{id}";
+        return "redirect:/event/{id}";
     }
 
     @GetMapping
@@ -82,22 +82,20 @@ public class EventController {
         return "event-list";
     }
 
-    @PreAuthorize("authenticated")
-    @PostMapping("/{id}/signup")
+    @GetMapping("/{id}/signup")
     public String signupForEvent(@PathVariable Long id, Authentication authentication) {
         Event event = eventService.findEventById(id).orElseThrow(() -> new IllegalArgumentException("Invalid event id"));
         User user = userService.findUserByUsername(authentication.getName());
         eventService.signupForEvent(event.getId(), user);
-        return "redirect:/{id}";
+        return "redirect:/event/{id}";
     }
 
-    @PreAuthorize("authenticated")
-    @PostMapping("/{id}/resign")
+    @GetMapping("/{id}/resign")
     public String resignFromEvent(@PathVariable Long id, Authentication authentication) {
         Event event = eventService.findEventById(id).orElseThrow(() -> new IllegalArgumentException("Invalid event id"));
         User user = userService.findUserByUsername(authentication.getName());
         eventService.resignFromEvent(event.getId(), user.getUsername());
-        return "redirect:/{id}";
+        return "redirect:/event/{id}";
     }
 
 //    @GetMapping("/search")

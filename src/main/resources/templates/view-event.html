@@ -44,24 +44,20 @@
     </div>
 </header>
 <div class="event-details-container">
-    <h1 class="event-title" th:text="${event.isPresent() ? event.get().title : 'Event not found'}"></h1>
+    <h1 class="event-title" th:text="${event.title}"></h1>
     <p class="event-date">
         <span>Start date:</span>
-        <span th:text="${event.isPresent() ? event.get().startDate : 'Start date not found'}"></span>
+        <span th:text="${event.startDate}"></span>
         <span class="end-date">End date:</span>
-        <span th:text="${event.isPresent() ? event.get().endDate : 'End date not found'}"></span>
+        <span th:text="${event.endDate}"></span>
     </p>
-    <p class="event-description" th:text="${event.isPresent() ? event.get().description : 'Description not found'}"></p>
-    <div class="event-box-footer" sec:authentication="authenticated">
+    <p class="event-description" th:text="${event.description}"></p>
+    <div class="event-box-footer" sec:authorize="isAuthenticated()">
         <div th:if="${!isSignedUp}">
-            <form method="post" th:action="@{/event/${id}/signup}">
-                <a class="btn btn-success" type="submit">Sign Up</a>
-            </form>
+                <a class="btn btn-success" th:href="@{'/event/' + ${event.id} + '/signup'}" type="button">Sign Up</a>
         </div>
         <div th:if="${isSignedUp}">
-            <form method="post" th:action="@{/event/${id}/resign}">
-                <a class="btn btn-danger" type="submit">Resign</a>
-            </form>
+                <a class="btn btn-danger" th:href="@{'/event/' + ${event.id} + '/resign'}" type="button">Resign</a>
         </div>
     </div>
     <div class="signed-up-users">
@@ -75,7 +71,7 @@
 </div>
 <div class="comments-container" sec:authorize="authenticated">
     <h2 class="comments-title">Leave a comment</h2>
-    <form method="post" th:action="@{/event/${id}/comments}">
+    <form method="post" th:action="@{'/event/' + ${event.id} + '/comments'}">
         <textarea maxlength="500" name="comment" placeholder="Write your comment here"></textarea>
         <button class="btn btn-primary" type="submit">Comment</button>
     </form>
@@ -86,7 +82,7 @@
         </div>
     </div>
 </div>
-
+n
 </body>
 <script th:inline="javascript" th:src="@{/js/script.js}" type="text/javascript"></script>
 <script crossorigin="anonymous"
