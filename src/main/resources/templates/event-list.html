@@ -51,7 +51,13 @@
         <div class="row">
             <div th:each="event : ${events}" class="event-box col-6 col-md-6">
                 <div class="event-box-content">
-                    <h2 class="event-title" th:text="${event.title}"></h2>
+<!--                    <h2 class="event-title" th:text="${event.title}"></h2>-->
+                    <h2>
+                        <a th:href="@{/event/{id}(id=${event.id})}" class="event-title" th:text="${event.title}"></a>
+                    </h2>
+<!--                    <a th:href="@{/event/{id}(id=${event.id})}" class="event-title">-->
+<!--                        <h2 th:text="${event.title}" class="link-dark"></h2>-->
+<!--                    </a>-->
                     <p class="event-date">
                         <span>Start date:</span>
                         <span th:text="${event.startDate}"></span>

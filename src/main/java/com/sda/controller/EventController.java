@@ -63,7 +63,7 @@ public class EventController {
     }
 
     @PostMapping("/{id}/comments")
-    public String addComment(@PathVariable long id, @RequestParam String comment, Authentication authentication) {
+    public String addComment(@PathVariable Long id, @RequestParam String comment, Authentication authentication) {
         Optional<Event> event = eventService.findEventById(id);
         User user = (User) authentication.getPrincipal();
         Comment newComment = new Comment(event.orElseGet(Event::new), user, comment);
