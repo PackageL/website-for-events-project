@@ -79,7 +79,7 @@
     </div>
 </div>
 <main>
-    <form action="#" class="form-container-create-event" method="post" th:action="@{/event/create}" th:object="${event}">
+    <form action="#" class="form-container" style="width: 600px" method="post" th:action="@{/event/create}" th:object="${event}">
         <h1 class="second-tile">Create an Event</h1>
         <label for="title">Title</label>
         <input type="text" th:field="*{title}" id="title" name="title" placeholder="Enter the title">
