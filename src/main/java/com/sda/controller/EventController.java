@@ -46,7 +46,7 @@ public class EventController {
             return "create-event";
         }
         eventService.createEvent(event);
-        return "redirect:/event";
+        return "redirect:/";
     }
 
     @GetMapping("/{id}")
@@ -87,13 +87,6 @@ public class EventController {
         eventService.resignFromEvent(event.getId(), user.getUsername());
         return "redirect:/event/{id}";
     }
-
-//    @GetMapping("/search")
-//    public String search(@ModelAttribute("searchForm") Event event, Model model) {
-//        List<Event> events = eventService.searchEvents(event.getTitle());
-//        model.addAttribute("events", events);
-//        return "view-event";
-//    }
 }
 
 

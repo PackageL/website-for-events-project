@@ -30,40 +30,81 @@
         <div sec:authorize="!authenticated">
             <a class="header-button" th:href="@{/signup}">Sign Up</a>
         </div>
-
-        <div class="loggedIn" sec:authorize="authenticated">
-            Logged in as: <span sec:authentication="name"></span>
+        <button class="header-button" style="background-color: transparent; border-color: transparent;"  type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" sec:authorize="authenticated">
+            <div class="loggedIn" sec:authorize="authenticated">
+                Logged in as: <span sec:authentication="name"></span>
+            </div>
+        </button>
+        </a>
+        <div class="popup-window" sec:authorize="authenticated">
+            <label for="role-switch">User role</label>
+            <input type="checkbox" id="role-switch" name="role-switch" sec:authorize="hasRole('ROLE_USER')"/>
+            <label for="role-switch">Creator role</label>
+            <input type="checkbox" id="role-switch2" name="role-switch" sec:authorize="hasRole('ROLE_CREATOR')"/>
+            <form th:action="@{/logout}" method="post" sec:authorize="authenticated">
+                <input type="submit" value="Logout">
+            </form>
         </div>
-
     </div>
 </header>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5>Change your role</h5>
+                <form th:action="@{/switch-to-user}" method="post">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        User
+                    </label>
+                </div>
+                </form>
+                <form th:action="@{/switch-to-creator}" method="post">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Creator
+                    </label>
+                </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <form th:action="@{/logout}" method="post" sec:authorize="authenticated">
+                        <input class="btn btn-primary" type="submit" value="Logout">
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="title-div">
     <h1 class="title">Website for Events</h1>
 </div>
 <div th:switch="${events.size()}">
-        <div class="row">
-            <div th:each="event : ${events}" class="event-box col-6 col-md-6">
-                <div class="event-box-content">
-                    <h2 class="event-title">
-                        <a class="event-title" th:href="@{/event/{id}(id=${event.id})}" th:text="${event.title}"></a>
-                    </h2>
-                    <p class="event-date">
-                        <span>Start date:</span>
-                        <span th:text="${event.startDate}"></span>
-                        <span class="end-date">End date:</span>
-                        <span th:text="${event.endDate}"></span>
-                    </p>
-                    <p class="event-description" th:text="${event.description}"></p>
-                </div>
-                <div class="event-box-footer">
-                    <a th:data="${event.id}" th:href="@{/event/{eventId}(eventId=${event.id})}" class="btn btn-primary"
-                       type="submit">
-                        View
-                    </a>
-                </div>
+    <div class="row">
+        <div th:each="event : ${events}" class="event-box col-6 col-md-6">
+            <div class="event-box-content">
+                <h2 class="event-title">
+                    <a class="event-title" th:href="@{/event/{id}(id=${event.id})}" th:text="${event.title}"></a>
+                </h2>
+                <p class="event-date">
+                    <span>Start date:</span>
+                    <span th:text="${event.startDate}"></span>
+                    <span class="end-date">End date:</span>
+                    <span th:text="${event.endDate}"></span>
+                </p>
+                <p class="event-description" th:text="${event.description}"></p>
+            </div>
+            <div class="event-box-footer">
+                <a th:data="${event.id}" th:href="@{/event/{eventId}(eventId=${event.id})}" class="btn btn-primary"
+                   type="submit">
+                    View
+                </a>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 

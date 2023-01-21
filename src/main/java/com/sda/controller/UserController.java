@@ -12,11 +12,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Comparator;
@@ -56,6 +54,20 @@ public class UserController {
     public String login(HttpSession session, @RequestParam("username") String username){
         session.setAttribute("username", username);
         return "signin";
+    }
+
+    @PostMapping("/switch-to-user")
+    public String switchToUser(Authentication authentication) throws Exception {
+        String username = authentication.getName();
+        userService.updateRole(username, "ROLE_USER");
+        return "redirect:/";
+    }
+
+    @PostMapping("/switch-to-creator")
+    public String switchToCreator(Authentication authentication) throws Exception {
+        String username = authentication.getName();
+        userService.updateRole(username, "ROLE_CREATOR");
+        return "redirect:/";
     }
 
     @GetMapping("/signup")

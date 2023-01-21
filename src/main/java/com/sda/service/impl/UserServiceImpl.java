@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import static com.sda.utils.Constants.Security.SECURITY_DEFAULT_ROLE;
+import static com.sda.utils.Constants.Security.SECURITY_ROLE_USER;
 
 @Service
 public class UserServiceImpl implements com.sda.service.UserService {
@@ -26,7 +27,7 @@ public class UserServiceImpl implements com.sda.service.UserService {
 
     @Override
     public void saveUser(User user) throws Exception {
-        user.setRole(roleService.findRoleByName(SECURITY_DEFAULT_ROLE));
+        user.setRole(roleService.findRoleByName(SECURITY_ROLE_USER));
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
@@ -39,5 +40,12 @@ public class UserServiceImpl implements com.sda.service.UserService {
     @Override
     public List<User> findAllUsers() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public void updateRole(String username, String  newRole) throws Exception {
+        User user = userRepository.findUserByUsername(username);
+        user.setRole(roleService.findRoleByName(newRole));
+        userRepository.save(user);
     }
 }
