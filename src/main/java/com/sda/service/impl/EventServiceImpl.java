@@ -36,14 +36,14 @@ public class EventServiceImpl implements EventService {
     @Override
     public void signupForEvent(Long eventId, User user) {
         Event event = eventRepository.findEventById(eventId);
-        event.addAttendee(user);
+        event.getAttendees().add(user);
         eventRepository.save(event);
     }
 
     public void resignFromEvent(Long eventId, String username) {
         Event event = eventRepository.findEventById(eventId);
         User user = userService.findUserByUsername(username);
-        event.removeAttendee(user);
+        event.getAttendees().remove(user);
         eventRepository.save(event);
     }
 

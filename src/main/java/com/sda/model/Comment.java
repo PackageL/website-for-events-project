@@ -1,9 +1,11 @@
 package com.sda.model;
 
+import lombok.Data;
 import javax.persistence.*;
-import java.util.Optional;
+
 
 @Entity
+@Data
 public class Comment {
 
     @Id
@@ -20,43 +22,13 @@ public class Comment {
 
     private String text;
 
-    public Comment() {}
+    public Comment() {
+
+    }
 
     public Comment(Event event, User user, String text) {
         this.event = event;
         this.user = user;
-        this.text = text;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Event getEvent() {
-        return event;
-    }
-
-    public void setEvent(Event event) {
-        this.event = event;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
         this.text = text;
     }
 }
