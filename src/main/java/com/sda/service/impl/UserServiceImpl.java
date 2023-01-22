@@ -46,6 +46,6 @@ public class UserServiceImpl implements com.sda.service.UserService {
     public void updateRole(String username, String  newRole) throws Exception {
         User user = userRepository.findUserByUsername(username);
         user.setRole(roleService.findRoleByName(newRole));
-        userRepository.save(user);
+        userRepository.saveAndFlush(user);
     }
 }

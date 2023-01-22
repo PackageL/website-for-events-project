@@ -87,6 +87,13 @@ public class EventController {
         eventService.resignFromEvent(event.getId(), user.getUsername());
         return "redirect:/event/{id}";
     }
+
+    @GetMapping("/search")
+    public String searchByTitle(@RequestParam("title") String title, Model model) {
+        List<Event> events = eventService.findEventsByTitle(title);
+        model.addAttribute("events", events);
+        return "search";
+    }
 }
 
 

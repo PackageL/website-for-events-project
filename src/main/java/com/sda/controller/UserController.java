@@ -23,16 +23,11 @@ import java.util.List;
 
 @Controller
 public class UserController {
-    private final UserService userService;
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private EventService eventService;
-
-    private RoleService roleService;
-
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
 
     @GetMapping("/")
     public String homePage(Model model) {
@@ -57,17 +52,10 @@ public class UserController {
         return "signin";
     }
 
-    @PostMapping("/switch-to-user")
-    public String switchToUser(Authentication authentication) throws Exception {
+    @GetMapping("/switch-user-role")
+    public String switchToUser(@RequestParam("role") String roleName, Authentication authentication) throws Exception {
         String username = authentication.getName();
-        userService.updateRole(username, "ROLE_USER");
-        return "redirect:/";
-    }
-
-    @PostMapping("/switch-to-creator")
-    public String switchToCreator(Authentication authentication) throws Exception {
-        String username = authentication.getName();
-        userService.updateRole(username, "ROLE_CREATOR");
+        userService.updateRole(username, roleName);
         return "redirect:/";
     }
 

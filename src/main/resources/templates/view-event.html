@@ -43,22 +43,12 @@
         <div class="modal-content">
             <div class="modal-body">
                 <h5>Change your role</h5>
-                <form th:href="@{/switch-to-user}" method="post">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                        <label class="form-check-label" for="flexRadioDefault2">
-                            User
-                        </label>
+                    <div th:if="${user.role.name.contains('CREATOR')}">
+                        <a href="#" th:href="@{/switch-user-role(role=ROLE_USER)}" class="btn btn-primary">User</a>
                     </div>
-                </form>
-                <form th:href="@{/switch-to-creator}" method="post">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            Creator
-                        </label>
+                    <div th:if="${user.role.name.contains('USER')}">
+                        <a href="#" th:href="@{/switch-user-role(role=ROLE_CREATOR)}" class="btn btn-primary">Creator</a>
                     </div>
-                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

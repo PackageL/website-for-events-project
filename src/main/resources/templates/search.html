@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -30,7 +30,8 @@
         <div sec:authorize="!authenticated">
             <a class="header-button" th:href="@{/signup}">Sign Up</a>
         </div>
-        <button class="header-button" style="background-color: transparent; border-color: transparent;"  type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" sec:authorize="authenticated">
+        <button class="header-button" style="background-color: transparent; border-color: transparent;" type="button"
+                data-bs-toggle="modal" data-bs-target="#exampleModal" sec:authorize="authenticated">
             <div class="loggedIn" sec:authorize="authenticated">
                 Logged in as: <span sec:authentication="name"></span>
             </div>
@@ -50,29 +51,43 @@
         </div>
     </div>
 </div>
-<main>
-    <form action="#" class="form-container" style="width: 600px" method="post" th:action="@{/event/create}" th:object="${event}">
-        <h1 class="second-tile">Create an Event</h1>
-        <label for="title">Title</label>
-        <input type="text" th:field="*{title}" id="title" name="title" placeholder="Enter the title">
-        <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"></span>
-        <label for="startDate">Start date</label>
-        <input type="date" th:field="*{startDate}" id="startDate" name="startDate" placeholder="Enter the start date">
-        <span th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}" class="text-danger"></span>
-        <label for="endDate">End date</label>
-        <input type="date" th:field="*{endDate}" id="endDate" name="endDate" placeholder="Enter the end date">
-        <span th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}" class="text-danger"></span>
-        <label for="description">Description</label>
-        <textarea rows="10" cols="50" minlength="20" th:field="*{description}" id="description" name="description" placeholder="Write a description"></textarea>
-        <span  th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></span>
-        <button type="submit">Create</button>
-    </form>
-</main>
+<div class="title-div">
+    <h1 class="title">Website for Events</h1>
+</div>
+<div th:switch="${events.size()}">
+    <div th:case="0">
+        <p>No events found</p>
+    </div>
+    <div th:case="1">
+        <div class="row">
+            <div th:each="event : ${events}" class="event-box col-6 col-md-6">
+                <div class="event-box-content">
+                    <h2 class="event-title">
+                        <a class="event-title" th:href="@{/event/{id}(id=${event.id})}" th:text="${event.title}"></a>
+                    </h2>
+                    <p class="event-date">
+                        <span>Start date:</span>
+                        <span th:text="${event.startDate}"></span>
+                        <span class="end-date">End date:</span>
+                        <span th:text="${event.endDate}"></span>
+                    </p>
+                    <p class="event-description" th:text="${event.description}"></p>
+                </div>
+                <div class="event-box-footer">
+                    <a th:data="${event.id}" th:href="@{/event/{eventId}(eventId=${event.id})}" class="btn btn-primary"
+                       type="submit">
+                        View
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
 <script crossorigin="anonymous"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
         src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script crossorigin="anonymous"
         integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-</body>
 </html>

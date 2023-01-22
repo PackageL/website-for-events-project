@@ -57,7 +57,7 @@ public class EventServiceImpl implements EventService {
         return Collections.emptyList();
     }
 
-//    public List<Event> searchEvents(String title) {
-//        return eventRepository.findEventByTitle(title);
-//    }
+    public List<Event> findEventsByTitle(String title) {
+        return eventRepository.findByTitle(title);
+    }
 }
