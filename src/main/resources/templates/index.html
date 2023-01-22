@@ -17,7 +17,7 @@
         <a class="header-button" th:href="@{/}">
             <i class="fas fa-home"></i>
         </a>
-        <div sec:authorize="authenticated">
+        <div sec:authorize="!authenticated">
             <a class="header-button" th:href="@{/event/create}">Create an Event</a>
         </div>
         <form class="search-container" th:action="@{/search}" method="get">
@@ -36,15 +36,6 @@
             </div>
         </button>
         </a>
-        <div class="popup-window" sec:authorize="authenticated">
-            <label for="role-switch">User role</label>
-            <input type="checkbox" id="role-switch" name="role-switch" sec:authorize="hasRole('ROLE_USER')"/>
-            <label for="role-switch">Creator role</label>
-            <input type="checkbox" id="role-switch2" name="role-switch" sec:authorize="hasRole('ROLE_CREATOR')"/>
-            <form th:action="@{/logout}" method="post" sec:authorize="authenticated">
-                <input type="submit" value="Logout">
-            </form>
-        </div>
     </div>
 </header>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

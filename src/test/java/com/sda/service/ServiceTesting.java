@@ -1,4 +1,4 @@
-package com.sda;
+package com.sda.service;
 
 
 import com.sda.model.Event;
